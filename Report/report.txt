@@ -1,0 +1,263 @@
+Report Bachelor Project - Room Designer
+
+Rieder, Kasper 201310514
+
+Jensen, Daniel V. 201500152
+
+Vejledere: Kasper Løvborg Jensen & Henrik Kirk
+
+1
+
+Contents
+
+1 Glossary
+
+3
+
+2 Analysis 2.1 Virtual Reality . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2.2 Current Virtual Reality Generation . . . . . . . . . . . . . . . . . . . . . . . . . . 2.2.1 Samsung Gear VR . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2.2.2 Oculus Rift . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2.2.3 HTC Vive . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2.2.4 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2.3 Problem Statement . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+4 4 7 8 10 12 14 16
+
+3 Test Setup 3.1 Task Description . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3.2 Virtual Reality Platforms . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3.2.1 Smartphone Virtual Reality System . . . . . . . . . . . . . . . . . . . . . 3.2.2 Desktop Computer Virtual Reality System . . . . . . . . . . . . . . . . .
+
+17 17 19 19 19
+
+4 System requirements/specification
+
+19
+
+4.1 Non Funtional Requirements . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+
+5 Development Process & Method
+
+19
+
+6 Technical Analysis 6.1 Choice of VR Systems/Platforms . . . . . . . . . . . . . . . . . . . . . . . . . . . 6.2 Choice of Game Engine . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6.3 Programming Language . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6.4 Version Control . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6.5 Continuous integration? . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6.6 Database? . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6.7 Models and Interaction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+19 19 20 20 20 20 20 20
+
+7 System Architecture, Design & Implemenation
+
+20
+
+8 Data Collection - The user experiments
+
+20
+
+9 Results and Discussion
+
+20
+
+10 Conclusion
+
+20
+
+2
+
+1 Glossary
+Immersion: The objective level of sensory fidelity a VR system provides. Presence: The user's subjective psychological response to a VR system. HMD: Head-Mounted Display used to visualize a virtual space, and track head movement. Mobile virtual reality (MVR): A virtual reality system for smartphone devices. This includes Samsung Gear VR and Google Daydream View. Installed virtual reality (IVR): A virtual reality system installed on a PC. This includes systems such as Oculus Rift and HTC VIVE.
+3
+
+2 Analysis
+In this section we will talk about virtual reality(VR), what it is and how it is used. We will take a look at the VR market and compare multiple VR systems' features to create a basis on which we can define a problem statement for further work.
+2.1 Virtual Reality
+Virtual Reality is not a new concept. It has been discussed and experimented with for many years. Devices attempting multi-sensual simulations go back as far the Sensorama, first shown in 1964. [1]
+Figure 1: A picture of the Sensorama [2] Historically the concept of virtual reality has been defined as a digitally created space which humans could enter by equipping sophisticated computer hardware. [3] In this digital space one can interact with virtual objects, people and environments. In the article Virtual Reality A survival guide for the social scientist, Fox et al. makes the point that the driving force behind the design and development of VR comes from the need to provide
+4
+
+a space for people to interact, without the constraints of the physical world. [3] Interaction with objects and people in a virtual environment is already achieved through the standard computer interface of a 2D screen, mouse, and keyboard, but according to Gobetti and Scateni in Virtual Reality: Past, Present and Future[4], the standard computer interface is showing limitations when it comes to presenting and interacting with a 3D world. Often simple tasks are difficult to achieve, when it should have been simple and intuitive. They see a potential in Virtual Reality as a way for humans to interact with virtual environments the same way they would with a real environment, thus making the human-machine interface more intuitive and effective as the user can use existing motor- and cognitive skills. The book Virtual Reality Technology claims, that the aim of VR research is to provide a faster and more natural way of interacting with the computer, thus overcoming the communication bottleneck experienced with the mouse and keyboard [5]
+Figure 2: Futuristic computer interface from the movie Minority Report [6]
+In short, virtual reality is about interaction with a virtual environment, which according to the book Developing Virtual Reality Applications: Foundations of Effective Design[7] can be divided into three categories:
+· Making Selections · Performing Manipulations · Navigation (Traveling) Especially performing manipulations, which includes aspects such as changing the position, orientation and scale of an object, is one of the most important forms of interaction according to the article Virtual Environment Interaction Techniques [8] This is further cooperated by articles such as An Evaluation of Techniques for Grabbing and Manipulating Remote Objects in Immersive Virtual Environments, that highlights that one of the defining features of VR, is the ability to manipulate objects interactively, rather than observing a passive environment.[9] This makes virtual reality an attractive technology for many industries as it can provide training and experience by putting the users in various simulated environments and situations.[4][3][10] An obvious way to utilize the spacial understanding gained by using virtual reality, is the inspection of complex 3D models in a virtual environment. An example of this is Rolls Royce who have
+5
+
+been using virtual reality to test and improve their designs. [4] VR testing can be done earlier in the development cycle than physical testing, making the process cheaper, and has the benefit of multi-site collaboration on projects. [4] Another benefit of VR is the relatively high "transfer-of-training" it provides. [11] By putting the user in simulated environments and scenarios tailored to maximize training, the users are able to gain experience with decision-making and interactions that are more easily transferred to the real world, compared to the standard mouse and keyboard computer interface. [4] In the medical field, virtual reality can be used to teach students about anatomy, surgeries, or make them experience the stress of a chaotic emergency room. [3] The military have been using virtual reality to give hands-on training in flight- and combat situations, which should train the decision-making process in a cheap and safe environment that would not be possible in the real world. [3]
+Figure 3: US Army research in VR as a pilot training tool [12]
+To make virtual reality usage successful, both as a training tool and an entertainment experience, the VR application has to provide a high level of immersion to match the real world experience with a simulated one. [10] Especially when it comes to training transfer from VR to the real world, it is argued that the training can only be as effective as the training system's sensory stimuli is realistic, as higher immersion can cause an increased sense of presence. [10] To interact with an immersive virtual environment, a system of advanced hardware is required. In the article Defining Virtual Reality: Dimensions determining telepresence, Jonathan Steuer points out, that popular definitions of virtual reality have a focus on the hardware aspects of virtual reality
+"This [virtual reality] system usually includes a computer capable of real-time animation, controlled by a set of wired gloves and position tracker, and using a head-mounted stereoscopic display for visual output."(Steuer, 1992)[13] With the current generation of consumer-grade virtual reality systems, we have seen that this definition of a VR system still is relevant, as the latest technology makes use of stereoscopic HMD, cameras that acts as positional trackers, and a set of controllers.
+6
+
+2.2 Current Virtual Reality Generation
+It is practical to survey the current market of most popular Virtual Reality systems in order to gain an understanding of the current possibilities as a consumer. According to statistics from International Data Corporation (IDC) [14] [15] the worldwide unit shipments of AR and VR headsets in 2017, categorized in brands, are as presented in figure ...
+
+Figure 4: Worldwide Unit Shipments of AR and VR headsets in 2017 (in thousands)
+
+It should be noted that the brands refer to the following Virtual Reality headsets:
+
+Table 1: Top 5 Worldwide AR and VR Headset Companies and the associated headset technology
+
+Brand Samsumg Sony Facebook TCL HTC
+
+Virtual Reality Headset Gear VR Playstation VR Oculus Rift Alcatel VR Vive
+
+These five companies have been picked as the top 5 VR and AR companies worldwide by IDC based on market share. [15].
+
+7
+
+Figure 5: The market share distributed between the top 5 AR and VR companies worldwide. Based on this information, it is relevant to examine these virtual reality systems to understand their specifications, and to know where their differences lie. 2.2.1 Samsung Gear VR Samsung's Gear VR is a mobile Virtual Reality headset. It is developed in collaboration with Oculus. By mobile Virtual Reality headset, it is meant that the headset is meant for smartphones. [16] Whilst a relatively new addition [16], Gear VR supports controller input with touchpad and back buttons. This can be seen in figure 6.
+8
+
+Figure 6: Samsung Gear VR with included controller. The Gear VR controller can be seen in greater detail on figure 7.
+Figure 7: Samsung Gear VR controller. From here, it can be seen that the controller consists of a trigger button located at the back. Additionally, a trackpad can be found in front, with an additional count of 4 buttons.
+9
+
+Samsung Gear VR requires a Samsung Galaxy phone, with the newest model being Note8 and the earliest model being S6 Edge. [17] The Gear VR headset has a Gyro sensor and an accelerometer [17]. It has a 101 degree field of view. It has a refresh rate of 60Hz. [18] Gear VR is currently set at a price of $129.99 USD. 2.2.2 Oculus Rift Facebook's Oculus Rift is a Virtual Reality headset for the desktop platform. This means that it will typically be used in association with a desktop PC. [19] When you purchase the headset, the following items will be found in the box: [19]
+· The Headset · A pair of touch controllers · Two sensors The hardware can be seen in figure 8.
+Figure 8: The Oculus Rift headset with two touch controllers and a pair of sensors. The headset has a 110 degree field of view and has a refresh rate of 90Hz. [19] The touch controllers go by the name Oculus Touch. Each controller consists of an analog stick, three buttons, and two triggers. These controllers can be seen in greater details in figure 9. [20]
+10
+
+Figure 9: The Oculus Touch controllers.
+The controllers are also fully tracked in 3D space relative to your position using the two sensors. This means that they provide a realistic representation of your hands in physical space, relative to you. [20]. The sensor system is known as the Constellation System [20]. Besides being used to track the Oculus Touch held by the users, it is also used to support a system known generally in Virtual Reality literature as Roomscale. Roomscale is called a design paradigm in Virtual Reality which allows a user to physically walk around within a defined play-area, with that movement traslating to movement within the virtual world. [21] As already stated, Oculus Rift is a Virtual Reality headset for the desktop platform. Thus in order to use it, you will need a desktop PC. In figure 10, the official recommended specifications, highlighting the Graphics Card, CPU, and Memory is shown.
+11
+
+Figure 10: The official recommended specifications for the desktop platform driving the Oculus Rift. [19]
+What can be seen from the recommended specifications is that, relative to the current generation of computer desktop hardware, there is a relatively high demand on the end-user's hardware setup. From the official website of Oculus Rift, the current price for the headset, including two controllers and two sensors, is $399 USD.
+2.2.3 HTC Vive In the same vein as the Oculus Rift, the HTC Vive is a Virtual Reality headset for the desktop platform. [22]. When you purchase the headset, the following items will be found in the box [22]:
+· The Headset · A pair of touch controllers · Two sensors The hardware can be seen in figure 11.
+12
+
+Figure 11: The HTC Vive Hardware. As can be seen, the hardware setup is essentially identical to the Oculus Rift covered in the previous section. In order to avoid unnecessary repetition for this comparison, nothing further will be said of the HTC Vive hardware setup. Only notable differences will be highlighted. One notable difference is in the recommended minimum computer specifications for the desktop PC driving the HTC Vive. HTC Vive lists the following official recommended minimum specifications [22]:
+13
+
+Figure 12: The official minimum recommended computer specifications for the HTC Vive.
+What we can see for this recommendation is that, compared to the Oculus Rift, the HTC Vive seems to suggest that the minimum recommended graphcis card is the NVIDIA GeForce GTX 1060 (or equivalent), while this graphics card (or higher) is the recommended one for the Oculus Rift. Likewise, the minimum recommended processor of an Intel Core i5-4509 (or equivalent) of the HTC Vive is seen as the recommended CPU (or higher) for the Oculus Rift. Regardless, what we can see from the recommended minimum specifications of the HTC Vive is that, like the Oculus Rift, hardware requirements are high relative to the current generation of desktop PC hardware. Another notable difference from the Oculus Rift is the price. Currently, the HTC Vive is set at a price of $599 USD.
+2.2.4 Conclusion By examining aspects of the most popular Virtual Reality systems on the market today, it is possible to compare them in order to gain an overview of advantages and disadvantages between them. In comparing the different systems, highlights have been chosen as for what is most relevant for us. The variables that have been chosen are: Price, Platform, Amount of Controllers, Programmable Buttons on Individual Controllers, Roomscale, Spatial Control Tracking, Field of View in Degrees and Refresh Rate. The result of this comparison can be found in table 2.
+14
+
+Brand
+Samsung Gear VR Oculus Rift HTC Vive
+
+Price In USD
+$129.99 $399 $599
+
+Platform
+Mobile (Samsumg Galaxy) Desktop Computing Desktop Computing
+
+Amount of Controllers
+1
+2 2
+
+Programmable Buttons on individual controllers
+3
+7
+4
+
+Roomscale
+No Yes Yes
+
+Spatial Control Tracking
+No
+Yes Yes
+
+Field of View In Degrees
+101
+110 110
+
+Refresh Rate
+60
+90 90
+
+Table 2: Comparison of examined Virtual Reality systems.
+
+From table 2, some interesting differences can be seen. First of all, it is clear to see that Virtual Reality for mobile, through Samsung Gear VR, is the cheaper option compared to the other available choices on the market. Virtual Reality systems for desktop computers and entertainment systems seem to be amongst the most expensive possibilities for consumers today, with the HTC Vive being the most expensive of the examined systems.
+While Samsung Gear VR is the cheaper option, this also comes with some limitations compared to the higher-end systems. For one, the user only has a single controller with 3 programmable buttons. Compared with systems like the HTC Vive and Oculus Rift, who respectively boast a total of 8 and 14 programmable buttons across 2 controllers.
+Additionally, Samsung Gear VR has no support for either Roomscale or Spatial Control Tracking without additional high-cost purchases, whereas systems like the Oculus Rift and HTC Vive has support for both of these systems.
+What this points to, in relation to the definition of immersion used within the context of this analysis, is that objectively, the level of sensory fidelity on mobile virtual reality systems is currently lower than that of high-end systems. There is less controllers to work with, less buttons on the controllers, and no sensors to support Roomscale or Spatial Control Tracking.
+The low sensory fidelity of mobile virtual reality means that there are less channels in which a user can interact with the virtual environment.
+The statistic in figure 13 of the number of smartphone users worldwide from 2014 to 2020, released in 2016, shows a projection of users in billions.
+
+15
+
+Figure 13: The number of smartphone users worldwide from 2014 to 2020 in billions.
+The fact that the number of smartphone users worldwide is projected to be increasing whilst the mobile platform holds a significant share of the virtual reality market as demonstrated in figure 2, mobile virtual reality appears to be an interesting and relevant platform to make use of despite the potential limitations of immersion that the current generation of mobile virtual reality systems presents. Still it must be acknowledged that the lower degree of sensory fidelity, compared to high-end systems such as Oculus Rift and HTC Vive, might make an impact on the important aspect of virtual reality interaction of manipulating remote objects.
+2.3 Problem Statement
+In section 2.1 and 2.2 we have looked at what virtual reality is, and how it is used, and compared the VR hardware of the current generation. We found that interaction was an important aspect of virtual reality, and especially the ability to manipulate objects is vital for a good system. We also saw that VR for smartphones has a huge market-share compared to installed VR systems such as the Oculus Rift or the HTC VIVE. In addition, we noticed that the VR systems for smartphones have a lower barrier-to-entry for consumers, as they are much cheaper than installed VR, with the trade-off, that mobile VR has a worse visual- and sensory fidelity.
+16
+
+On this basis, it could be interesting make a comparison between mobile VR- and installed VR systems. Since smartphones are much less powerful than the computers required for an installed VR setup, we are assuming that the difference visual and auditory quality are not comparable yet, but might worth investigating when the smarthphone devices become more powerful. Thus we will exclude these differences for our investigation.
+Therefore it could be interesting to compare manipulation of 3D objects in high-end VR systems such as the Oculus Rift and HTC Vive to mobile virtual reality.
+If mobile VR can compete with installed VR when it comes to manipulation, it could be an attractive market to look at, since the cost is much lower. This leads us to the following problem statement:
+What is the difference in effectiveness and efficiency of object-manipulation between installed- and mobile virtual reality systems, and what is the perceived user satisfaction between the two technologies?
+Manipulation refers to the interactions with 3D objects, such as moving, rotating- and scaling them.
+Effectiveness refers to the users' accuracy of the completed task.
+Efficiency refers to the time spend completing the given task.
+To investigate this, we want to make a VR application for both smartphones and computers. Within this application the user has to complete the same tasks of 3D object manipulation across both a smartphone and a computer, both from which the system can gather objective data about effectiveness and efficiency. The point here being that the difference in performance can then be established.
+The subjective user satisfaction of the two technologies would be gathered through a questionnaire the users would have to answer.
+3 Test Setup
+In section 2.3 the system to be implemented was defined in an abstract language. The purpose of the following chapter is to concretize the system by descripting the test setup within a specific real-world context.
+3.1 Task Description
+It can be argued that the motivation for subjects to engage with tasks within a virtual reality environment is bigger if said environment is something that they can relate to. That is, engagement would be better if the virtual environment in which the task is to be completed resembles something from the real world instead of being abstract shapes such as mere cubes or spheres.
+The article Immersive Interfaces for Engagement and Learning [23], states the following:
+"Other researchers who study educational multiuser virtual environments designed for young people, such as Quest Atlantis or Whyville (13, 14), also are finding that immersive digital settings enchance their participants' engagement and learning."
+17
+
+Notice that this article uses the word "Immersion" in the same way we use "Presence", that is, to refer to the user's subjective psychological response to the VR system. While the article and referred research is done in relation to learning, engagement is a big part of it. As can be seen from the citation, it appears that immersive settings do have an impact on engagement. Since engagement will be an important part of our metrics for efficiency and effectiveness (the users have to care about their task in order for us to get optimum measurements), it seems to be a variable that should not be entirely disregarded. Thus, in order to increase the presence for the subjects when completing the tasks, it would be preferable that they complete tasks within a virtual environment that they can relate to. There might be many such virtual environments, however we have chosen Interior Design for this test setup. Besides being a theme that most people can probably relate to, the industry of Interior Design is already using Virtual Reality as a tool, with one example being the HTC Vive application TrueScale [24] [25]. Therefore, it is not entirely irrelevant to complete the studies in the context of interior design.
+Figure 14: HTC Vive's TrueScale application. [26] In figure 14 screenshots from HTC Vive's TrueScale can be seen where you are able to place furniture into a 3D 'Doll's House' representation of your own floorplan, after which you can step into the design in full-scale and do further customization.
+18
+
+3.2 Virtual Reality Platforms
+As the VR application has to be used on two virtual reality systems, one for smartphones and one for desktop computers, two such systems has to be chosen. The following section will present the choices for each platform along with the reasoning for them. 3.2.1 Smartphone Virtual Reality System When it comes to mobile VR, Google's Daydream View [27] is an interesting smart-phone VR system, as it has a similar "low-barrier-to-entry" aspect as the Samsung Gear VR, but has the potential to hit a wider range of smart-phone devices as it is not limited exclusively to Samsung phones.
+Figure 15: Google's Daydream View headset. [28] 3.2.2 Desktop Computer Virtual Reality System
+4 System requirements/specification
+4.1 Non Functional Requirements
+5 Development Process & Method 6 Technical Analysis
+6.1 Choice of VR Systems/Platforms
+HTC VIVE and Google Daydream View.
+19
+
+6.2 Choice of Game Engine
+Unity VS Unreal VS GoDot Engine
+6.3 Programming Language 6.4 Version Control 6.5 Continuous integration? 6.6 Database? 6.7 Models and Interaction
+How is interaction done in MVR compared to in IVR (Basically how do the applications utilize the controller and other input methods)
+7 System Architecture, Design & Implemenation 8 Data Collection - The user experiments 9 Results and Discussion 10 Conclusion
+20
+
+References
+[1] Michael A. Gigante. Virtual reality: Definitions, history and applications. Virtual Reality Systems, June 2 1993.
+[2] Minecraftpsyco. The sensorama machine. https://en.wikipedia.org/wiki/Sensorama# /media/File:Sensorama-morton-heilig-virtual-reality-headset.jpg.
+[3] Jesse Fox, Dylan Arena, and Jeremy N. Bailenson. Virtual reality a survival guide for the social scientist, 2009.
+[4] Enrico Gobetti and Riccardo Scateni. Virtual reality: Past, present and future. Studies in health technology and informatics, February 1998.
+[5] Grigore C. Burdea and Philippe Coiffet. Virtual Reality Technology, Volume 1, volume 1, chapter 2. John Wiley & Sons, June 2003.
+[6] ExtremeTech. Spacetop: A futuristic computer interface that you can reach into and manipulate. http://www.extremetech.com/wp-content/uploads/2013/02/minorityreport. jpg.
+[7] Alan B. Craig, William R. Sherman, and Jeffrey D. Will. Developing Virtual Reality Applications: Foundations of Effective Design. Morgan Kaufmann, 1 edition, 2009. https: //books.google.dk/books?hl=en&lr=&id=2P91gPYr5KkC&oi=fnd&pg=PP1&dq=virtual+ reality+applications&ots=kmeWCQEV9h&sig=qWYLMxwt3LJwX38BIWZK7kQkqUY&redir_ esc=y#v=onepage&q&f=false.
+[8] Mark R. Mine. Virtual environment interaction techniques. 1995. https://dl.acm.org/ citation.cfm?id=897820.
+[9] Doug A. Bowman and Larry F. Hodges. An evaluation of techniques for grabbing and manipulating remote objects in immersive virtual environments. April 27 1997. https: //dl.acm.org/citation.cfm?id=253301.
+[10] D. A. Bowman and R. P. McMahan. Virtual reality: How much immersion is enough? Computer, 40(7):36­43, July 2007.
+[11] F. D. Rose, E. A. Attree, B. M. Brooks, D. M. Parslow, and P. R. Penn. Training in virtual environments: transfer to real world tasks and equivalence to real task training. Ergonomics, 43(4):494­511, 2000. PMID: 10801083.
+[12] Researchers test virtual reality Adaptive Flight Training Study, Feb 2018. [Online; accessed 15. Feb. 2018] : http://www.af.mil/News/Article-Display/Article/1414771/ researchers-test-virtual-reality-adaptive-flight-training-study/.
+[13] Jonathan Steuer. Defining virtual reality: Dimensions determining telepresence. Journal of Communication, December 1992. http://onlinelibrary.wiley.com/doi/10.1111/j. 1460-2466.1992.tb00812.x/full.
+[14] Felix Richter. Who leads the virtual reality race?, September 7 2017. https://www.statista. com/chart/11006/vr-and-ar-headset-shipments/.
+[15] IDC. Worldwide shipments of av/vr headsets maintain solid growth trajectory in the second quarter, according to idc, September 5 2017. https://www.idc.com/getdoc.jsp? containerId=prUS43021317.
+21
+
+[16] Wikipedia. Samsung gear vr, 18 January 2018. https://en.wikipedia.org/wiki/Samsung_ Gear_VR.
+
+[17] Samsung. Specs. http://www.samsung.com/global/galaxy/gear-vr/specs/.
+
+[18] Digital Trends. Spec showdown: Oculus rift vs. samsumg gear vr, January 6 2016. https: //www.digitaltrends.com/virtual-reality/oculus-rift-vs-samsung-gear-vr/.
+
+[19] Oculus. Oculus rift, February 12 2018. https://www.oculus.com/rift.
+
+[20] Wikipedia. Oculus rift, January 28 2018. https://en.wikipedia.org/wiki/Oculus_Rift.
+
+[21] Wikipedia. Room scale, February 6 2018. https://en.wikipedia.org/wiki/Room_scale.
+
+[22] Vive. Vive vr system, February 12 2018. https://www.vive.com/us/product/ vive-virtual-reality-system/.
+
+[23] Chris Dede. Immersive interfaces for engagement and learning. Science, 323:66­69, January 2 2009. "http://science.sciencemag.org/content/323/5910/66; Accessed: 19-02-2018 17:17".
+
+[24] Design Exchange. Changing the interior design process using virtual reality, December 14 2017. [Online; accessed 20. February 2018] : http://www.demagazine.co.uk/design/ using-vr-in-interior-design.
+
+[25] Truescale, Feb 2018. [Online; accessed 20. February 2018] : https://www.viveport.com/ apps/b6a97756-4fce-49aa-a0c5-a111b122ba48.
+
+[26] Truescale Trailer (Immersion) - Vive - YouTube, October 27 2017. [Online; accessed 20. February 2018].
+
+[27] Google. Smartphone vr, February 2018. smartphonevr/.
+
+https://vr.google.com/daydream/
+
+[28] Maurizio Pesce. Daydream view vr headset made by google, October 4 2016.
+
+22
+
+
