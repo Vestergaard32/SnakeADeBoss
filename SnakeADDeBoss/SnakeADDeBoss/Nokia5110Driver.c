@@ -25,11 +25,8 @@
 #include "SPIdriver.h"
 
 #define RST_BIT 0 // PA0
-#define CE_BIT 1 // PA1
-#define DC_BIT 3 // PA3
-//#define DIN_BIT 3 
-#define LIGHT_BIT 4 // PA4
-//#define CLK_BIT 5 
+#define DC_BIT 1 // PA1
+#define LIGHT_BIT 2 // PA2
 
 
 
@@ -38,16 +35,24 @@ void initDisplay()
 	SPI_MasterInit();
 	
 	// Set port to output
-	DDRA |= 0b00111111;
+	DDRA = 0xFF;
 	
 	// Set bits to high (active low)
-	PORTA = ((1 << RST_BIT) | (1 << CE_BIT) | (1 << DC_BIT) & ~(1 << LIGHT_BIT));
-	//PORTA |= 0b00111111;
+	PORTA |= (1 << RST_BIT);
+	PORTA |= (1 << DC_BIT);
+	PORTA &= ~(1 << LIGHT_BIT);
 	
 	resetDisplay();
 	
-	sendIntruction(0b00100000); // Use basic instruction set
-	sendIntruction(0b00001100); // Set display mode normal
+	sendIntruction(0x21);
+	sendIntruction(0xC0);
+	sendIntruction(0x07);
+	sendIntruction(0x13);
+	
+	sendIntruction(0x20); // Use basic instruction set
+	sendIntruction(0x0C); // Set display mode normal
+	
+	sendData(0x1F);
 }
 
 
@@ -57,7 +62,7 @@ void resetDisplay()
 	PORTA &= ~(1 << RST_BIT);
 		
 	// Delay of min 100 ns (0,1ms) p.20
-	_delay_us(1);
+	_delay_ms(100);
 		
 	// Set RES high
 	PORTA |= (1 << RST_BIT);
@@ -65,21 +70,14 @@ void resetDisplay()
 
 void sendIntruction(unsigned char cmd)
 {
-	// Set chip enable (CE) to low
-	// This must be done in order to clock in
-	// Data
-	PORTA &= ~(1 << CE_BIT);
-	
 	// Set DC low, Command
 	PORTA &= ~(1 << DC_BIT);
-	
 	SPI_MasterTransmit(cmd);
-	
-	// CE must be set to high after transmission is done
-	PORTA |= 1 << CE_BIT;
+	PORTA |= 1 << DC_BIT;
 }
 
 void sendData(unsigned char data)
-{
-	
+{	
+	PORTA |= 1 << DC_BIT;
+	SPI_MasterTransmit(data);
 }
