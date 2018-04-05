@@ -1,0 +1,3 @@
+SPI click
+SPI Mode
+active low positive edge CPOL=0 CPHA=0
