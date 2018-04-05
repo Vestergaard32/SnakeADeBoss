@@ -16,9 +16,6 @@
 #define DD_MISO 3
 #define DD_DORD 5
 
-#define OUTPUT 0xFF
-#define INPUT  0x00
-
 void SPI_MasterInit(void)
 {	
 	DDR_SPI = (1<<DD_MOSI)|(1<<DD_SCK)|(1<<DD_SS); //MOSI,SS & SCK output,others input
@@ -27,9 +24,7 @@ void SPI_MasterInit(void)
 
 void SPI_MasterTransmit(char cData)
 {
-	PORTA &= ~(1 << 2);
 	SPDR = cData;			 	   			// Start transmission
 	while( !(SPSR & (1<<SPIF)) );				// Wait for transmission complete
 	cData = SPDR;
-	PORTA |= 1 << 2;
 }

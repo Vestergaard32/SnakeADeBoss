@@ -28,8 +28,6 @@
 #define DC_BIT 1 // PA1
 #define LIGHT_BIT 2 // PA2
 
-
-
 void initDisplay()
 {
 	SPI_MasterInit();
@@ -40,19 +38,42 @@ void initDisplay()
 	// Set bits to high (active low)
 	PORTA |= (1 << RST_BIT);
 	PORTA |= (1 << DC_BIT);
+
+	// Turn on light
 	PORTA &= ~(1 << LIGHT_BIT);
 	
+	// Required display reset
+	// This has to be done before doing
+	// Anything else with the display
 	resetDisplay();
 	
+	// Use extended instruction set
 	sendIntruction(0x21);
+
+	// Here we control operation voltage of the LCD
+	// We set it to 6V (the minimum allowed voltage range)
+	// If you do not set a VOP value, the internal voltage generator
+	// Will be switched off, and thus the display won't function.
 	sendIntruction(0xC0);
-	sendIntruction(0x07);
+
+	// We set the bias voltage levels
+	// The bias value is taken after the
+	// optimum bias value described in official
+	// data sheet.
 	sendIntruction(0x13);
+
+	// Use basic instruction set
+	sendIntruction(0x20);
+
+	// Set display mode normal
+	sendIntruction(0b00001100);
 	
-	sendIntruction(0x20); // Use basic instruction set
-	sendIntruction(0x0C); // Set display mode normal
-	
+	// Clear the display to make sure
+	// No pixels are alive on startup
+	clearDisplay();
+
 	sendData(0x1F);
+	sendData(0x1F); // For some reason, the first data draw is not counted
 }
 
 
@@ -80,4 +101,12 @@ void sendData(unsigned char data)
 {	
 	PORTA |= 1 << DC_BIT;
 	SPI_MasterTransmit(data);
+}
+
+void clearDisplay()
+{
+	for (int k=0; k<=503; k++)
+	{
+		sendData(0x00);
+	}
 }

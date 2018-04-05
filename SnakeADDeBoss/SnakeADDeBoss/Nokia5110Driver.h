@@ -10,10 +10,9 @@
 #define NOKIA5110DRIVER_H_
 
 void initDisplay(); 
+void clearDisplay();
 void resetDisplay();
 void sendIntruction(unsigned char);
 void sendData(unsigned char);
-
-
 
 #endif /* NOKIA5110DRIVER_H_ */
