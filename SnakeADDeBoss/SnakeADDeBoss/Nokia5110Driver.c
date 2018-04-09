@@ -71,9 +71,6 @@ void initDisplay()
 	// Clear the display to make sure
 	// No pixels are alive on startup
 	clearDisplay();
-
-	sendData(0x1F);
-	sendData(0x1F); // For some reason, the first data draw is not counted
 }
 
 

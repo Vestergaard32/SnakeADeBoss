@@ -24,7 +24,15 @@ void SPI_MasterInit(void)
 
 void SPI_MasterTransmit(char cData)
 {
-	SPDR = cData;			 	   			// Start transmission
-	while( !(SPSR & (1<<SPIF)) );				// Wait for transmission complete
+	// Start transmission
+	SPDR = cData;			
+	
+	// k variable increment is to avoid C compiler optimization
+	int k = 0;
+	while( !(SPSR & (1<<SPIF)) ) // Wait for transmission complete
+	{
+		k++;
+	}			
+	
 	cData = SPDR;
 }

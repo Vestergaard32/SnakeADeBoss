@@ -11,7 +11,9 @@
 int main(void)
 {
 	initDisplay();
-	
+
+	sendData(0xFF);
+
     while (1) 
     {
     }
