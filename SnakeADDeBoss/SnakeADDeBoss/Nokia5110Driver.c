@@ -68,6 +68,7 @@ void initDisplay()
 	// Set display mode normal
 	sendIntruction(0b00001100);
 	
+
 	// Clear the display to make sure
 	// No pixels are alive on startup
 	clearDisplay();

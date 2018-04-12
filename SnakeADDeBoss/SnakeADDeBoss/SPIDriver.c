@@ -24,6 +24,8 @@ void SPI_MasterInit(void)
 
 void SPI_MasterTransmit(char cData)
 {
+	PORTB &= ~(1 << DD_SS);
+
 	// Start transmission
 	SPDR = cData;			
 	
@@ -35,4 +37,6 @@ void SPI_MasterTransmit(char cData)
 	}			
 	
 	cData = SPDR;
+
+	PORTB|= 1 << DD_SS;
 }

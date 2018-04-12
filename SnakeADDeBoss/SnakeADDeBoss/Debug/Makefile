@@ -39,7 +39,8 @@ SUBDIRS :=
 C_SRCS +=  \
 ../main.c \
 ../Nokia5110Driver.c \
-../SPIDriver.c
+../SPIDriver.c \
+../WorldDriver.c
 
 
 PREPROCESSING_SRCS += 
@@ -51,22 +52,26 @@ ASM_SRCS +=
 OBJS +=  \
 main.o \
 Nokia5110Driver.o \
-SPIDriver.o
+SPIDriver.o \
+WorldDriver.o
 
 OBJS_AS_ARGS +=  \
 main.o \
 Nokia5110Driver.o \
-SPIDriver.o
+SPIDriver.o \
+WorldDriver.o
 
 C_DEPS +=  \
 main.d \
 Nokia5110Driver.d \
-SPIDriver.d
+SPIDriver.d \
+WorldDriver.d
 
 C_DEPS_AS_ARGS +=  \
 main.d \
 Nokia5110Driver.d \
-SPIDriver.d
+SPIDriver.d \
+WorldDriver.d
 
 OUTPUT_FILE_PATH +=SnakeADDeBoss.elf
 
@@ -82,6 +87,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 
