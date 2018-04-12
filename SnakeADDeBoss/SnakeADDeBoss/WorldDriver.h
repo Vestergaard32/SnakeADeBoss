@@ -5,5 +5,6 @@
  *  Author: CodingBeagle
  */ 
 
+ void DrawPixel(unsigned char x, unsigned char y, unsigned char* world);
  void DrawDot(unsigned char x, unsigned char y, unsigned char* world);
- void DrawPixel(unsigned char x, unsigned char y, unsigned char** world);
+ void RenderWorld(unsigned char* world);
