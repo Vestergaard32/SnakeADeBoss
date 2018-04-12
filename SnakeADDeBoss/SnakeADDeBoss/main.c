@@ -17,13 +17,19 @@ unsigned char worldRender[504];
 struct SnakeBodyPart {
 	int x;
 	int y;
-	SnakeBodyPart* headPointer;
+
+	int prevX;
+	int prevY;
+
+	struct SnakeBodyPart* headPointer;
 };
 
-SnakeBodyPart snake[100];
-int snakeBodyLength = 1;
+
+struct SnakeBodyPart snake[100];
+int snakeBodyLength =3;
 int xDirection = 1;
 int yDirection = 0;
+
 
 int main(void)
 {
@@ -34,28 +40,46 @@ int main(void)
 		worldRender[x] = 0x00;
 	}
 
+	
 	struct SnakeBodyPart head;
 	head.x = 0;
 	head.y = 0;
-	head.headPointer = NULL; 
+	head.headPointer = 0;
 	snake[0] = head;
+
+	struct SnakeBodyPart middle;
+	middle.x = 0;
+	middle.y = 0;
+	middle.headPointer = &snake[0];
+	snake[1] = middle;
+	
+	struct SnakeBodyPart end;
+	end.x = 0;
+	end.y = 0;
+	end.headPointer = &snake[1];
+	snake[2] = end;
 
     while (1) 
 	{
 		clearDisplay();
 
+		
 		for (int bodyPartIndex = 0; bodyPartIndex < snakeBodyLength; bodyPartIndex++)
 		{
 			// Check for head
-			if (snake[bodyPartIndex].headPointer == NULL)
+			if (snake[bodyPartIndex].headPointer == 0)
 			{
+				snake[bodyPartIndex].prevX = snake[bodyPartIndex].x;
+				snake[bodyPartIndex].prevY = snake[bodyPartIndex].y;
 				snake[bodyPartIndex].x += 2 * xDirection;
 				snake[bodyPartIndex].y += 2 * yDirection;
 			}
 			else
 			{
-				snake[bodyPartIndex].x = snake[bodyPartIndex].headPointer->x;
-				snake[bodyPartIndex].y = snake[bodyPartIndex].headPointer->y;
+				snake[bodyPartIndex].prevX = snake[bodyPartIndex].x;
+				snake[bodyPartIndex].prevY = snake[bodyPartIndex].y;
+				snake[bodyPartIndex].x = snake[bodyPartIndex].headPointer->prevX;
+				snake[bodyPartIndex].y = snake[bodyPartIndex].headPointer->prevY;
 			}
 		}
 
@@ -63,7 +87,7 @@ int main(void)
 		{
 			DrawDot(snake[x].x, snake[x].y, worldRender);
 		}
-
+		
 		RenderWorld(worldRender);
 
 		_delay_ms(50);
