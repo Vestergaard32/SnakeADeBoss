@@ -5,6 +5,11 @@
  *  Author: CodingBeagle
  */ 
 
+ #ifndef WORLDDRIVER_H_
+ #define WORLDDRIVER_H_
+
  void DrawPixel(unsigned char x, unsigned char y, unsigned char* world);
  void DrawDot(unsigned char x, unsigned char y, unsigned char* world);
  void RenderWorld(unsigned char* world);
+
+ #endif

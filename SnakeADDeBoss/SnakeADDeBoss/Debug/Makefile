@@ -37,6 +37,8 @@ SUBDIRS :=
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../GameManager.c \
+../KeypadDriver.c \
 ../main.c \
 ../Nokia5110Driver.c \
 ../SPIDriver.c \
@@ -50,24 +52,32 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+GameManager.o \
+KeypadDriver.o \
 main.o \
 Nokia5110Driver.o \
 SPIDriver.o \
 WorldDriver.o
 
 OBJS_AS_ARGS +=  \
+GameManager.o \
+KeypadDriver.o \
 main.o \
 Nokia5110Driver.o \
 SPIDriver.o \
 WorldDriver.o
 
 C_DEPS +=  \
+GameManager.d \
+KeypadDriver.d \
 main.d \
 Nokia5110Driver.d \
 SPIDriver.d \
 WorldDriver.d
 
 C_DEPS_AS_ARGS +=  \
+GameManager.d \
+KeypadDriver.d \
 main.d \
 Nokia5110Driver.d \
 SPIDriver.d \
@@ -87,6 +97,10 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
+
+
 
 
 

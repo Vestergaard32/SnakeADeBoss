@@ -14,7 +14,4 @@ char SPI_MasterReceive(void);
 void SPI_MasterTransmit(char cData);
 void delay(unsigned int val);
 
-
-
-
 #endif /* SPIDRIVER_H_ */
