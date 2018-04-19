@@ -122,6 +122,18 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GameManager.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="GameManager.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="KeypadDriver.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="KeypadDriver.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>

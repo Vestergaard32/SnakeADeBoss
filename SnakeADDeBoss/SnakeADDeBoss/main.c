@@ -7,6 +7,7 @@
 
 #include <avr/io.h>
 #include "Nokia5110Driver.h"
+#include "KeypadDriver.h"
 #include "WorldDriver.h"
 #include <avr/cpufunc.h>
 #define F_CPU 16000000
@@ -33,17 +34,19 @@ int yDirection = 0;
 
 int main(void)
 {
+	InitKeypad();
 	initDisplay();
 
 	for (int x = 0; x < 504; x++)
 	{
 		worldRender[x] = 0x00;
 	}
-
 	
 	struct SnakeBodyPart head;
 	head.x = 0;
 	head.y = 0;
+	head.prevX = 0;
+	head.prevY = 0;
 	head.headPointer = 0;
 	snake[0] = head;
 
@@ -52,17 +55,24 @@ int main(void)
 	middle.y = 0;
 	middle.headPointer = &snake[0];
 	snake[1] = middle;
+
+	struct SnakeBodyPart middle1;
+	middle1.x = 0;
+	middle1.y = 0;
+	middle1.prevX = 0;
+	middle1.prevY = 0;
+	middle1.headPointer = &snake[1];
+	snake[2] = middle1;
 	
 	struct SnakeBodyPart end;
 	end.x = 0;
 	end.y = 0;
-	end.headPointer = &snake[1];
-	snake[2] = end;
+	end.headPointer = &snake[2];
+	snake[3] = end;
 
     while (1) 
 	{
 		clearDisplay();
-
 		
 		for (int bodyPartIndex = 0; bodyPartIndex < snakeBodyLength; bodyPartIndex++)
 		{
@@ -83,6 +93,12 @@ int main(void)
 			}
 		}
 
+		if (GetKey() == '4')
+		{
+			yDirection = 1;
+			xDirection = 0;
+		}
+
 		for(int x = 0; x < snakeBodyLength; x++)
 		{
 			DrawDot(snake[x].x, snake[x].y, worldRender);
@@ -90,7 +106,7 @@ int main(void)
 		
 		RenderWorld(worldRender);
 
-		_delay_ms(50);
+		_delay_ms(100);
     }
 }
 
