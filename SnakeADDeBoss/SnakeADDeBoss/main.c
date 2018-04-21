@@ -105,6 +105,7 @@ int main(void)
 
 	DrawIntroScreen(IntroScreenImage);
 	
+	// Busy Wait until user press star button
 	while (GetKey() != '*')
 	{
 	}

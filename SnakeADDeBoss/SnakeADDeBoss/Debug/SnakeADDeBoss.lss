@@ -754,6 +754,7 @@ int main(void)
      4a0:	45 d7       	rcall	.+3722   	; 0x132c <DrawIntroScreen>
      4a2:	00 00       	nop
 	
+	// Busy Wait until user press star button
 	while (GetKey() != '*')
      4a4:	c1 de       	rcall	.-638    	; 0x228 <GetKey>
      4a6:	8a 32       	cpi	r24, 0x2A	; 42
