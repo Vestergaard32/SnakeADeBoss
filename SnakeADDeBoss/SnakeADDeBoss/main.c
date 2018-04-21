@@ -34,8 +34,8 @@ int yDirection = 0;
 
 int main(void)
 {
+	initDisplay();
 	InitKeypad();
-	//initDisplay();
 
 	for (int x = 0; x < 504; x++)
 	{
@@ -72,7 +72,6 @@ int main(void)
 
     while (1) 
 	{
-	/*
 		clearDisplay();
 		
 		for (int bodyPartIndex = 0; bodyPartIndex < snakeBodyLength; bodyPartIndex++)
@@ -93,29 +92,45 @@ int main(void)
 				snake[bodyPartIndex].y = snake[bodyPartIndex].headPointer->prevY;
 			}
 		}
-		*/
 
-		if (GetKey() == 1)
+		if (GetKey() == '1')
+		{
+			yDirection = -1;
+			xDirection = 0;
+		}
+
+		if (GetKey() == '2')
 		{
 			yDirection = 1;
 			xDirection = 0;
 		}
 
-		/*
-		if (GetKey() == 0)
+		if (GetKey() == '3')
+		{
+			yDirection = 0;
+			xDirection = 1;
+		}
+
+		if (GetKey() == 'A')
 		{
 			yDirection = 0;
 			xDirection = -1;
-		}*/
+		}
 
 		/*
+		if (GetKey() == '*')
+		{
+			yDirection = 0;
+			xDirection = 1;
+		}
+		*/
+
 		for(int x = 0; x < snakeBodyLength; x++)
 		{
 			DrawDot(snake[x].x, snake[x].y, worldRender);
 		}
 		
 		RenderWorld(worldRender);
-		*/
 
 		_delay_ms(100);
     }
