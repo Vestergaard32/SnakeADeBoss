@@ -134,10 +134,10 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GameManager.c">
+    <Compile Include="FoodProcessor.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="GameManager.h">
+    <Compile Include="FoodProcessor.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="KeypadDriver.c">
@@ -153,6 +153,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Nokia5110Driver.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SnakeManager.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="SnakeManager.h">

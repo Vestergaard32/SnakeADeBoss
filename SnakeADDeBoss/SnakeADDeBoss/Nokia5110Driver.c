@@ -33,14 +33,14 @@ void initDisplay()
 	SPI_MasterInit();
 	
 	// Set port to output
-	DDRA = 0xFF;
+	DDRA |= 0b00000111;
+	
+	// Turn on light
+	PORTA &= ~(1 << LIGHT_BIT);
 	
 	// Set bits to high (active low)
 	PORTA |= (1 << RST_BIT);
 	PORTA |= (1 << DC_BIT);
-
-	// Turn on light
-	PORTA &= ~(1 << LIGHT_BIT);
 	
 	// Required display reset
 	// This has to be done before doing
