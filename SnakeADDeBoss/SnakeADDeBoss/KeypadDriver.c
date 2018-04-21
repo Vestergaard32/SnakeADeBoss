@@ -32,7 +32,7 @@ char characterColumns[4][4] = {
 	{ '2', '5', '8', '0' },
 	{ '3', '6', '9', '#' },
 	{ 'A', 'B', 'C', 'D' }
-}
+};
 
 void InitKeypad()
 {
@@ -57,7 +57,7 @@ char GetKey()
 	PORTD &= ~(1 << COLUMN_1);
 	_delay_ms(1);
 
-	for (int columnIndex = 0; columnIndex < 4: columnIndex++)
+	for (int columnIndex = 0; columnIndex < 4; columnIndex++)
 	{
 		// Key '1'
 		if ((PINA & (1 << ROW_1)) == 0)
