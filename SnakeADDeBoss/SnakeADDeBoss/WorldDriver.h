@@ -8,9 +8,11 @@
  #ifndef WORLDDRIVER_H_
  #define WORLDDRIVER_H_
 
- void DrawPixel(unsigned char x, unsigned char y, unsigned char* world);
- void DrawDot(unsigned char x, unsigned char y, unsigned char* world);
- void DrawFood(unsigned char x, unsigned char y, unsigned char* world);
- void RenderWorld(unsigned char* world);
+void DrawIntroScreen(unsigned char introScreen[]);
+void DrawBitmap(unsigned char asciiCharacter[], int width, int height, int posX, int posY, unsigned char* world);
+void DrawPixel(unsigned char x, unsigned char y, unsigned char* world);
+void DrawDot(unsigned char x, unsigned char y, unsigned char* world);
+void DrawFood(unsigned char x, unsigned char y, unsigned char* world);
+void RenderWorld(unsigned char* world);
 
  #endif

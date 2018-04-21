@@ -7,6 +7,28 @@
 #include "WorldDriver.h"
 #include "Nokia5110Driver.h"
 
+void DrawIntroScreen(unsigned char introScreen[])
+{
+	for (int x = 0; x < 504; x++)
+	{
+		sendData(introScreen[x]);
+	}
+}
+
+void DrawBitmap(unsigned char asciiCharacter[], int imageWidth, int imageHeight, int posX, int posY, unsigned char* world)
+{
+	for (int y = 0; y < imageHeight; y++)
+	{
+		for (int x = 0; x < imageWidth; x++)
+		{
+			if (asciiCharacter[y * imageWidth + x] == '1')
+			{
+				DrawPixel(posX + x, posY + y, world);
+			}
+		}
+	}
+}
+
 void DrawPixel(unsigned char x, unsigned char y, unsigned char* world)
 {
 	if (x < 0 || x > 83)
@@ -67,7 +89,6 @@ void DrawPixel(unsigned char x, unsigned char y, unsigned char* world)
 	DrawPixel(x + 1, y + 1, world);
 	DrawPixel(x + 1, y - 1, world);
  }
- 
 
  void RenderWorld(unsigned char* world)
  {
