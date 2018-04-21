@@ -53,40 +53,41 @@ void InitKeypad()
 
 char GetKey()
 {
-	// Scan Column 1 (1, 4, 7, and *)
-	PORTD &= ~(1 << COLUMN_1);
-	_delay_ms(1);
-
 	for (int columnIndex = 0; columnIndex < 4; columnIndex++)
 	{
+		// Scan Column 1 (1, 4, 7, and *)
+		PORTD |= 0b00001111;
+		PORTD &= ~(1 << columnIndex);
+		_delay_ms(1);
+			
 		// Key '1'
 		if ((PINA & (1 << ROW_1)) == 0)
 		{
-			return characterColumns[columnIndex][0];
+			keyPressed = characterColumns[columnIndex][0]; 
+			return keyPressed;
 		}
 
-		/*
 		// Key '4'
 		if ((PINA & (1 << ROW_2)) == 0)
 		{
-			keyPressed = '4';
+			keyPressed = characterColumns[columnIndex][1];
+			return keyPressed;
 		}
 
 		// Key '7'
 		if ((PINC & (1 << ROW_3)) == 0)
 		{
-			keyPressed = '7';
+			keyPressed = characterColumns[columnIndex][2];
+			return keyPressed;
 		}
 
 		// Key '*'
 		if ((PINC & (1 << ROW_4)) == 0)
 		{
-			keyPressed = '*';
+			keyPressed = characterColumns[columnIndex][3];
+			return keyPressed;
 		}
-		*/
 	}
-
-
-
+	
 	return keyPressed;
 }

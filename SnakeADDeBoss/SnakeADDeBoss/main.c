@@ -13,6 +13,8 @@
 #define F_CPU 16000000
 #include <util/delay.h>
 
+#define WORLD_WIDTH 83
+#define WORLD_HEIGHT 47
 unsigned char worldRender[504];
 
 struct SnakeBodyPart {
@@ -31,6 +33,11 @@ int snakeBodyLength =3;
 int xDirection = 1;
 int yDirection = 0;
 
+void CheckInput();
+void GoDown();
+void GoUp();
+void GoLeft();
+void GoRight();
 
 int main(void)
 {
@@ -81,8 +88,27 @@ int main(void)
 			{
 				snake[bodyPartIndex].prevX = snake[bodyPartIndex].x;
 				snake[bodyPartIndex].prevY = snake[bodyPartIndex].y;
-				snake[bodyPartIndex].x += 2 * xDirection;
-				snake[bodyPartIndex].y += 2 * yDirection;
+				
+				if ((snake[bodyPartIndex].x + 1) > WORLD_WIDTH)
+				{
+					snake[bodyPartIndex].x = 0;
+					snake[bodyPartIndex].y += 2 * yDirection;
+				} 
+				else if ((snake[bodyPartIndex].x) < 0) {
+					snake[bodyPartIndex].x = WORLD_WIDTH - 1;
+					snake[bodyPartIndex].y += 2 * yDirection;
+				} else if ((snake[bodyPartIndex].y + 1) > WORLD_HEIGHT) {
+					snake[bodyPartIndex].y = 0;
+					snake[bodyPartIndex].x += 2 * xDirection;
+				} else if ((snake[bodyPartIndex].y) < 0) {
+					snake[bodyPartIndex].y = WORLD_HEIGHT - 1;
+					snake[bodyPartIndex].x += 2 * xDirection;
+				}
+				else	
+				{
+					snake[bodyPartIndex].x += 2 * xDirection;
+					snake[bodyPartIndex].y += 2 * yDirection;
+				}
 			}
 			else
 			{
@@ -92,38 +118,10 @@ int main(void)
 				snake[bodyPartIndex].y = snake[bodyPartIndex].headPointer->prevY;
 			}
 		}
+		
+		CheckInput();
 
-		if (GetKey() == '1')
-		{
-			yDirection = -1;
-			xDirection = 0;
-		}
-
-		if (GetKey() == '2')
-		{
-			yDirection = 1;
-			xDirection = 0;
-		}
-
-		if (GetKey() == '3')
-		{
-			yDirection = 0;
-			xDirection = 1;
-		}
-
-		if (GetKey() == 'A')
-		{
-			yDirection = 0;
-			xDirection = -1;
-		}
-
-		/*
-		if (GetKey() == '*')
-		{
-			yDirection = 0;
-			xDirection = 1;
-		}
-		*/
+		DrawFood(20,20,worldRender);
 
 		for(int x = 0; x < snakeBodyLength; x++)
 		{
@@ -136,3 +134,61 @@ int main(void)
     }
 }
 
+void CheckInput()
+{
+	if (GetKey() == '8')
+	{
+		GoDown();
+	}
+
+	if (GetKey() == '2')
+	{
+		GoUp();
+	}
+
+	if (GetKey() == '6')
+	{
+		GoRight();
+	}
+
+	if (GetKey() == '4')
+	{
+		GoLeft();
+	}
+}
+
+void GoLeft()
+{
+	if (xDirection == 1)
+		return;
+	
+	yDirection = 0;
+	xDirection = -1;
+}
+
+void GoRight()
+{
+	if (xDirection == -1)
+		return;
+	
+	yDirection = 0;
+	xDirection = 1;
+}
+
+void GoUp()
+{
+	if (yDirection == 1)
+		return;
+	
+	yDirection = -1;
+	xDirection = 0;
+}
+
+void GoDown()
+{
+	if (yDirection == -1)
+		return;
+	
+	xDirection = 0;
+	yDirection = 1;
+}

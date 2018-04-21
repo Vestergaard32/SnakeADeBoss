@@ -59,6 +59,15 @@ void DrawPixel(unsigned char x, unsigned char y, unsigned char* world)
 	DrawPixel(x, y + 1, world);
 	DrawPixel(x + 1, y + 1, world);
  }
+ 
+ void DrawFood(unsigned char x, unsigned char y, unsigned char* world)
+ {
+	DrawPixel(x, y, world);
+	DrawPixel(x + 2, y, world);
+	DrawPixel(x + 1, y + 1, world);
+	DrawPixel(x + 1, y - 1, world);
+ }
+ 
 
  void RenderWorld(unsigned char* world)
  {
