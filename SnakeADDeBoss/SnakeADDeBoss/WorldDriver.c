@@ -15,17 +15,25 @@ void DrawIntroScreen(unsigned char introScreen[])
 	}
 }
 
-void DrawBitmap(unsigned char asciiCharacter[], int imageWidth, int imageHeight, int posX, int posY, unsigned char* world)
+void DrawHighscoreText(unsigned char highscoreText[])
 {
-	for (int y = 0; y < imageHeight; y++)
+	clearDisplay();
+	setCursor(0, 0);
+	int i = 0;
+	while (highscoreText[i] != '\\')
 	{
-		for (int x = 0; x < imageWidth; x++)
-		{
-			if (asciiCharacter[y * imageWidth + x] == '1')
-			{
-				DrawPixel(posX + x, posY + y, world);
-			}
-		}
+		sendData(highscoreText[i]);
+		i++;
+	}
+}
+
+void DrawCharacter(unsigned char number[], char x, char y, int arrayLength)
+{
+	setCursor(x, y);
+	
+	for (int i = 0; i < arrayLength; i++)
+	{
+		sendData(number[i]);
 	}
 }
 

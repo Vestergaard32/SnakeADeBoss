@@ -7,6 +7,7 @@
 
 #include "SnakeManager.h"
 #include "KeypadDriver.h"
+#include <string.h>
 
 int xDirection = 1;
 int yDirection = 0;
@@ -93,6 +94,13 @@ void InitSnake(struct SnakeBodyPart snakeArray[], int snakeLength)
 {
 	if (snakeLength <= 0)
 		return;
+		
+	// Clear Array
+	memset(snakeArray, 0, snakeLength);
+	hitSelf = 0;
+	
+	xDirection = 1;
+	yDirection = 0;
 		
 	struct SnakeBodyPart head;
 	head.x = 0;

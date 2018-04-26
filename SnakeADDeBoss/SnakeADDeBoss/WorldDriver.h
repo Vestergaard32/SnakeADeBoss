@@ -9,7 +9,8 @@
  #define WORLDDRIVER_H_
 
 void DrawIntroScreen(unsigned char introScreen[]);
-void DrawBitmap(unsigned char asciiCharacter[], int width, int height, int posX, int posY, unsigned char* world);
+void DrawHighscoreText(unsigned char highscoreText[]);
+void DrawCharacter(unsigned char number[], char x, char y, int arrayLength);
 void DrawPixel(unsigned char x, unsigned char y, unsigned char* world);
 void DrawDot(unsigned char x, unsigned char y, unsigned char* world);
 void DrawFood(unsigned char x, unsigned char y, unsigned char* world);

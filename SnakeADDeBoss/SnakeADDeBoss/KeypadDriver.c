@@ -53,6 +53,8 @@ void InitKeypad()
 
 char GetKey()
 {
+	keyPressed = 0;
+	
 	for (int columnIndex = 0; columnIndex < 4; columnIndex++)
 	{
 		// Scan Column 1 (1, 4, 7, and *)

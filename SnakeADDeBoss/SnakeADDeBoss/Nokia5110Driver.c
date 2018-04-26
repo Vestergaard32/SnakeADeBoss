@@ -67,7 +67,6 @@ void initDisplay()
 
 	// Set display mode normal
 	sendIntruction(0b00001100);
-	
 
 	// Clear the display to make sure
 	// No pixels are alive on startup
@@ -87,6 +86,18 @@ void resetDisplay()
 	PORTA |= (1 << RST_BIT);
 }
 
+void setCursor(char x, char y)
+{
+	if (x > 83 || x < 0)
+		return;
+		
+	if (y > 5 || y < 0)
+		return;
+	
+	sendIntruction(0b10000000 | x);
+	sendIntruction(0b01000000 | y);
+}
+
 void sendIntruction(unsigned char cmd)
 {
 	// Set DC low, Command
@@ -103,7 +114,7 @@ void sendData(unsigned char data)
 
 void clearDisplay()
 {
-	for (int k=0; k<=503; k++)
+	for (int k=0; k<504; k++)
 	{
 		sendData(0x00);
 	}

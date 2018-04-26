@@ -12,6 +12,7 @@
 void initDisplay(); 
 void clearDisplay();
 void resetDisplay();
+void setCursor(char x, char y);
 void sendIntruction(unsigned char);
 void sendData(unsigned char);
 

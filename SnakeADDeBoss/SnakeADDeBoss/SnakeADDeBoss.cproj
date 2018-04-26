@@ -134,6 +134,9 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Bitmaps.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="FoodProcessor.c">
       <SubType>compile</SubType>
     </Compile>
