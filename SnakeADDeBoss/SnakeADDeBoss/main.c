@@ -11,6 +11,7 @@
 #include "WorldDriver.h"
 #include "SnakeManager.h"
 #include "FoodProcessor.h"
+#include "FlashDriver.h"
 #include "Bitmaps.h"
 #include <stdlib.h>
 #include <time.h>
@@ -39,7 +40,8 @@ int gameSpeed = GAME_INITIAL_SPEED;
 int scoreOnesCounter = 0;
 int scoreTensCounter = 0;
 int scoreHundredsCounter = 0;
-int playerHighscoreTextOffset = 50;
+int playerHighscoreTextOffset = 60;
+int storedHighscoreTextOffset = 0;
 
 int main(void)
 {
@@ -111,9 +113,69 @@ int main(void)
 			DrawHighscoreText(HighscoreText);
 			
 			// Draw player's current score
-			DrawCharacter(CharacterMapper[scoreOnesCounter], playerHighscoreTextOffset + 20, 3, 8);
-			DrawCharacter(CharacterMapper[scoreTensCounter], playerHighscoreTextOffset + 10, 3, 8);
-			DrawCharacter(CharacterMapper[scoreHundredsCounter], playerHighscoreTextOffset, 3, 8);
+			DrawCharacter(CharacterMapper[scoreOnesCounter], playerHighscoreTextOffset + 16, 3, 8);
+			DrawCharacter(CharacterMapper[scoreTensCounter], playerHighscoreTextOffset + 8, 3, 8);
+			
+			// Read stored player scores
+			unsigned char storedScores[3];
+			FlashRead(storedScores);
+			
+			unsigned char currentPlayerScore = (scoreTensCounter * 10) + scoreOnesCounter;
+			
+			unsigned char highscoreComparer = currentPlayerScore;
+			for (int x = 0; x < 3; x++)
+			{
+				if (storedScores[x] >= 100 || storedScores[x] < 0)
+				{
+					storedScores[x] = 0;
+				}
+				
+				if (highscoreComparer > storedScores[x])
+				{
+					unsigned char currentHighscoreInSpot = storedScores[x];
+					storedScores[x] = highscoreComparer;
+					highscoreComparer = currentHighscoreInSpot;
+				}
+			}
+			
+			unsigned char onesDigit = 0;
+			unsigned char tensDigit = 0;
+	
+			// Draw 1. highscore
+			char scoreString[10];
+			sprintf(scoreString, "%02d", storedScores[0]);
+			
+			onesDigit = scoreString[1] - 48;
+			tensDigit = scoreString[0] - 48;
+			
+			DrawCharacter(CharacterMapper[1], storedHighscoreTextOffset, 2, 8);
+			DrawCharacter(Dot, storedHighscoreTextOffset + 8, 2, 8);
+			DrawCharacter(CharacterMapper[tensDigit], storedHighscoreTextOffset + 16, 2, 8);
+			DrawCharacter(CharacterMapper[onesDigit], storedHighscoreTextOffset + 24, 2, 8);
+		
+			// Draw 2. highscore
+			sprintf(scoreString, "%02d", storedScores[1]);
+			
+			onesDigit = scoreString[1] - 48;
+			tensDigit = scoreString[0] - 48;
+						
+			DrawCharacter(CharacterMapper[2], storedHighscoreTextOffset, 3, 8);
+			DrawCharacter(Dot, storedHighscoreTextOffset + 8, 3, 8);
+			DrawCharacter(CharacterMapper[tensDigit], storedHighscoreTextOffset + 16, 3, 8);
+			DrawCharacter(CharacterMapper[onesDigit], storedHighscoreTextOffset + 24, 3, 8);
+			
+			// Draw 3. highscore
+			sprintf(scoreString, "%02d", storedScores[2]);
+						
+			onesDigit = scoreString[1] - 48;
+			tensDigit = scoreString[0] - 48;
+						
+			DrawCharacter(CharacterMapper[3], storedHighscoreTextOffset, 4, 8);
+			DrawCharacter(Dot, storedHighscoreTextOffset + 8, 4, 8);
+			DrawCharacter(CharacterMapper[tensDigit], storedHighscoreTextOffset + 16, 4, 8);
+			DrawCharacter(CharacterMapper[onesDigit], storedHighscoreTextOffset + 24, 4, 8);
+			
+			FlashWrite(storedScores);
 			
 			// Busy Wait until user press star button
 			while (GetKey() != '*')
