@@ -30,11 +30,13 @@ void ResetGame();
 
 #define GAME_INITIAL_SPEED 60
 
+#define GAME_INITIAL_SNAKE_LENGTH 4
+
 unsigned char worldImage[504];
 
 struct SnakeBodyPart snake[100];
 struct Position currentFoodPosition;
-int snakeBodyLength = 4;
+int snakeBodyLength = GAME_INITIAL_SNAKE_LENGTH;
 int gameState = GAME_STATE_ALIVE;
 int gameSpeed = GAME_INITIAL_SPEED;
 
@@ -196,6 +198,7 @@ int main(void)
 void ResetGame()
 {
 	gameState = GAME_STATE_ALIVE;
+	snakeBodyLength = GAME_INITIAL_SNAKE_LENGTH;
 	setCursor(0, 0);
 	clearDisplay();
 	setCursor(0, 0);
