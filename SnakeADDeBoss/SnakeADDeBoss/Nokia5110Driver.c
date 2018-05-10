@@ -1,15 +1,3 @@
-/*
-  [Display]        [PortA]
-  RST	------  PA0		Reset
-  CE	------  PA1		Chip enable
-  DC	------  PA2		Data (low) Command (High)
-  DIN	------  PA3		Serial Data In
-  CLK	------  PA5
-  VCC	------  3.3V
-  LIGHT -----	PA4
-  GND	------  GND
-
-*/
 #include <avr/io.h>
 #include <avr/cpufunc.h>
 #define F_CPU 16000000
