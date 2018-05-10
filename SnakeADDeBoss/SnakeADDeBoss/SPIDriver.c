@@ -16,12 +16,12 @@ void SPI_MasterInit(void)
 	SPCR = (1<<SPE)|(1<<MSTR)|(1<<SPR0);  		   //SPI, Master, clock = fck/16
 }
 
-void SPI_MasterTransmit(char cData)
+void SPI_MasterTransmit(char data)
 {
 	PORTB &= ~(1 << DD_SS);
 
 	// Start transmission
-	SPDR = cData;			
+	SPDR = data;			
 	
 	// k variable increment is to avoid C compiler optimization
 	int k = 0;
@@ -30,7 +30,7 @@ void SPI_MasterTransmit(char cData)
 		k++;
 	}			
 	
-	cData = SPDR;
+	data = SPDR;
 
 	PORTB|= 1 << DD_SS;
 }
