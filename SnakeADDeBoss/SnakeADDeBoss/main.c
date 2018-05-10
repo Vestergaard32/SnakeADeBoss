@@ -1,10 +1,3 @@
-/*
- * SnakeADDeBoss.c
- *
- * Created: 22-Mar-18 8:26:43 AM
- * Author : mpkon
- */ 
-
 #include <avr/io.h>
 #include <stdio.h>
 #include "Nokia5110Driver.h"

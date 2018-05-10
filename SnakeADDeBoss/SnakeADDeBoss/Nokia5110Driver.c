@@ -1,11 +1,4 @@
 /*
- * Nokia5110Driver.c
- *
- * Created: 22-Mar-18 8:30:26 AM
- *  Author: mpkon
- */ 
-
-/*
   [Display]        [PortA]
   RST	------  PA0		Reset
   CE	------  PA1		Chip enable

@@ -1,10 +1,3 @@
-/*
- * WorldDriver.h
- *
- * Created: 12-04-2018 08:57:16
- *  Author: CodingBeagle
- */ 
-
  #ifndef WORLDDRIVER_H_
  #define WORLDDRIVER_H_
 

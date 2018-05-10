@@ -1,11 +1,3 @@
-/*
- * FlashDriver.h
- *
- * Created: 03-May-18 8:29:07 AM
- *  Author: mpkon
- */ 
-
-
 #ifndef FLASHDRIVER_H_
 #define FLASHDRIVER_H_
 

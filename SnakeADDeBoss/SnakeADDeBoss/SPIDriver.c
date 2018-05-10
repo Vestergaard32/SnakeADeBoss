@@ -1,9 +1,3 @@
-/*
- * SPIDriver.c
- *
- * Created: 22-Mar-18 10:08:22 AM
- *  Author: mpkon
- */ 
 #include <avr/io.h>
 #include <avr/cpufunc.h>
 #define F_CPU 16000000

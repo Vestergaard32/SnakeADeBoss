@@ -1,10 +1,3 @@
-/*
- * KeypadDriver.c
- *
- * Created: 19-04-2018 08:32:20
- *  Author: CodingBeagle
- */ 
-
 #include <avr/io.h>
 #include <avr/cpufunc.h>
 #define F_CPU 16000000
