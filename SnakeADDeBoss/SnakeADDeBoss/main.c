@@ -6,6 +6,7 @@
  */ 
 
 #include <avr/io.h>
+#include <stdio.h>
 #include "Nokia5110Driver.h"
 #include "KeypadDriver.h"
 #include "WorldDriver.h"
@@ -33,7 +34,7 @@ unsigned char worldImage[504];
 
 struct SnakeBodyPart snake[100];
 struct Position currentFoodPosition;
-int snakeBodyLength = 25;
+int snakeBodyLength = 4;
 int gameState = GAME_STATE_ALIVE;
 int gameSpeed = GAME_INITIAL_SPEED;
 
@@ -80,6 +81,8 @@ int main(void)
 					gameSpeed--;
 					
 				GrowSnake(snake, snakeBodyLength);
+				snakeBodyLength++;
+				GrowSnake(snake, snakeBodyLength);
 				
 				if (scoreOnesCounter != 9)
 				{
@@ -97,9 +100,9 @@ int main(void)
 
 			DrawFood(currentFoodPosition.x ,currentFoodPosition.y, worldImage);
 
-			for(int x = 0; x < snakeBodyLength; x++)
+			for(int i = 0; i < snakeBodyLength; i++)
 			{
-				DrawDot(snake[x].x, snake[x].y, worldImage);
+				DrawDot(snake[i].x, snake[i].y, worldImage);
 			}
 					
 			if (SnakeHitSelf() == 1)
@@ -122,6 +125,7 @@ int main(void)
 			
 			unsigned char currentPlayerScore = (scoreTensCounter * 10) + scoreOnesCounter;
 			
+			// Check if current score should be in stored scores
 			unsigned char highscoreComparer = currentPlayerScore;
 			for (int x = 0; x < 3; x++)
 			{
