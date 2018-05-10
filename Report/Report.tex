@@ -60,7 +60,7 @@
 \usepackage{url}
 
 \lstset{frame=tb,
-  language=C++,
+  language=C,
   aboveskip=3mm,
   belowskip=3mm,
   showstringspaces=false,
@@ -76,11 +76,6 @@
   tabsize=3
 }
 
-% hyperref should be the LAST package in the preamble
-% Adds clickable links
-% NOTICE - hyperref causes "Warning: Cannot patch \document" when used with
-% subfiles. This should not cause any problems, but if it does, we'll know this is
-% The package that causes the warning
 \usepackage[colorlinks=false, pdfborder={0 0 0}]{hyperref}
 
 \author{
@@ -99,11 +94,11 @@
 \date{}
 
 \begin{document}
-\title{Report \\ AMS Project - SnakeADeBoss\\}
 
-\maketitle
-\newpage
+\subfile{Sections/Title}
+
 \tableofcontents
+\newpage
 
 \subfile{Sections/ProductOverview}
 
