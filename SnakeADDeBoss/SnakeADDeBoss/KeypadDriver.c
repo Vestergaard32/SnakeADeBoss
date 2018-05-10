@@ -1,10 +1,3 @@
-/*
- * KeypadDriver.c
- *
- * Created: 19-04-2018 08:32:20
- *  Author: CodingBeagle
- */ 
-
 #include <avr/io.h>
 #include <avr/cpufunc.h>
 #define F_CPU 16000000
@@ -15,17 +8,7 @@
 #define ROW_3 7
 #define ROW_4 5
 
-#define COLUMN_1 0
-#define COLUMN_2 1
-#define COLUMN_3 2
-#define COLUMN_4 3
-
 char keyPressed = 0;
-
-char Column1Characters[4] = { '1', '4', '7', '*' };
-char Column2Characters[4] = { '2', '5', '8', '0' };
-char Column3Characters[4] = { '3', '6', '9', '#' };
-char Column4Characters[4] = { 'A', 'B', 'C', 'D' };
 
 char characterColumns[4][4] = {
 	{ '1', '4', '7', '*' },

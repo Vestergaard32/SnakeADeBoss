@@ -1,11 +1,3 @@
-/*
- * Nokia5110Driver.h
- *
- * Created: 22-Mar-18 8:28:59 AM
- *  Author: mpkon
- */ 
-
-
 #ifndef NOKIA5110DRIVER_H_
 #define NOKIA5110DRIVER_H_
 

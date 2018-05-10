@@ -1,10 +1,3 @@
-/*
- * FlashDriver.c
- *
- * Created: 03-May-18 8:29:20 AM
- *  Author: mpkon
- */ 
-
 #include "FlashDriver.h"
 #include <avr/io.h>
 #include <avr/boot.h>
