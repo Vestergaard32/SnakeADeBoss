@@ -1,10 +1,3 @@
-/*
- * SnakeManager.c
- *
- * Created: 21-Apr-18 1:25:21 PM
- *  Author: mpkon
- */ 
-
 #include "SnakeManager.h"
 #include "KeypadDriver.h"
 #include <string.h>

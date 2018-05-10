@@ -1,9 +1,3 @@
-/*
- * WorldDriver.c
- *
- * Created: 12-04-2018 09:03:26
- *  Author: CodingBeagle
- */ 
 #include "WorldDriver.h"
 #include "Nokia5110Driver.h"
 

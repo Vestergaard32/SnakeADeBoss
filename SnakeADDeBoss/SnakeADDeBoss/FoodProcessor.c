@@ -1,10 +1,3 @@
-/*
- * FoodProcessor.c
- *
- * Created: 21-Apr-18 2:43:28 PM
- *  Author: mpkon
- */ 
-
 #include "FoodProcessor.h"
 #include <stdlib.h>
 #include <time.h>

@@ -1,8 +1,46 @@
 \section{The Display}
-How is the display setup?
+On the display component sits a PCD8544 low power CMOS LCD controller, which controls the rows and columns of the graphic 48x84 display. Communication with this controller is done through a serial bus interface like the SPI-protocol \cite{NokiaDisplay}.
+
+As we used the SPI-protocol to communicate, we coupled the data-in (DIN) pin to the MOSI pin on the ATMEGA. The clock (CLK) pin of the display was connected to the CLK on the ATMEGA. 
+
+To make life easy we made a spi-driver that could initialize spi communication and send data.
+
+CLASS DIAGRAM 
+
+\begin{lstlisting}
+void SPI_MasterInit(void)
+{	
+	DDR_SPI = (1<<DD_MOSI)|(1<<DD_SCK)|(1<<DD_SS); //MOSI,SS & SCK output,others input
+	SPCR = (1<<SPE)|(1<<MSTR)|(1<<SPR0);  		   //SPI, Master, clock = fck/16
+}
+\end{lstlisting}
+
+
+\begin{lstlisting}
+void SPI_MasterTransmit(char data)
+{
+	PORTB &= ~(1 << DD_SS);
+	// Start transmission
+	SPDR = data;			
+	
+	// k variable increment is to avoid C compiler optimization
+	int k = 0;
+	while( !(SPSR & (1<<SPIF)) ) // Wait for transmission complete
+	{
+		k++;
+	}			
+	
+	data = SPDR;
+	PORTB|= 1 << DD_SS;
+}
+\end{lstlisting}
 
 -- Communication with the display
 
 -- Display screen mapping
 
+-- FontMaker 
+
 -- Display Driver
+
+RST - CE - DC - DIN - CLK- VCC -LIGHT - GND
