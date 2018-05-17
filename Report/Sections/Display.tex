@@ -1,46 +1,69 @@
 \section{The Display}
 On the display component sits a PCD8544 low power CMOS LCD controller, which controls the rows and columns of the graphic 48x84 display. Communication with this controller is done through a serial bus interface like the SPI-protocol \cite{NokiaDisplay}.
 
-As we used the SPI-protocol to communicate, we coupled the data-in (DIN) pin to the MOSI pin on the ATMEGA. The clock (CLK) pin of the display was connected to the CLK on the ATMEGA. 
+%As we used the SPI-protocol to communicate, we coupled the data-in (DIN) pin to the MOSI pin on the ATMEGA. The clock (CLK) pin of the display was connected to the CLK on the ATMEGA. 
 
-To make life easy we made a spi-driver that could initialize spi communication and send data.
+To communicate easily with the display, we made a spi-driver that could initialize spi communication and send bytes from the ATMEGA to SPI-bus connected to the display. The classdiagram can be seen in figure \ref{SpiDriverClassDiagram}.
 
-CLASS DIAGRAM 
+\begin{figure}[H]
+	\includegraphics[width=5cm]{SPIDriverClassDiagram}
+	\centering
+	\caption{Class Diagram of the Spi Driver}
+	\label{SpiDriverClassDiagram}
+\end{figure}
 
-\begin{lstlisting}
-void SPI_MasterInit(void)
-{	
-	DDR_SPI = (1<<DD_MOSI)|(1<<DD_SCK)|(1<<DD_SS); //MOSI,SS & SCK output,others input
-	SPCR = (1<<SPE)|(1<<MSTR)|(1<<SPR0);  		   //SPI, Master, clock = fck/16
-}
-\end{lstlisting}
+Since the display controller requires more logic than simply sending bytes of data via SPI, we created a Nokia5110 driver. This class made use of the SPI driver to send instructions and control the Data/Command pin of the display. This class diagram for the Nokia5110 driver can be seen on figure 
 
+\begin{figure}[H]
+	\includegraphics[width=5cm]{Nokia5110DriverClassDiagram}
+	\centering
+	\caption{Class Diagram of the Nokia5110 Driver}
+	\label{Nokia5110DriverClassDiagram}
+\end{figure}
 
-\begin{lstlisting}
-void SPI_MasterTransmit(char data)
-{
-	PORTB &= ~(1 << DD_SS);
-	// Start transmission
-	SPDR = data;			
-	
-	// k variable increment is to avoid C compiler optimization
-	int k = 0;
-	while( !(SPSR & (1<<SPIF)) ) // Wait for transmission complete
-	{
-		k++;
-	}			
-	
-	data = SPDR;
-	PORTB|= 1 << DD_SS;
-}
-\end{lstlisting}
+The method descriptions can be found in table \ref{Nokia5110DriverDescription}.
 
--- Communication with the display
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{EFEFEF} 
+		\textbf{Method} & \textbf{Functionality} \\
+		initDisplay() & \begin{tabular}[c]{@{}l@{}}Sets the pins and ports used by\\ the display driver and SPI functionality\\ to an initialized state.\end{tabular} \\
+		\rowcolor[HTML]{EFEFEF} 
+		clearDisplay() & \begin{tabular}[c]{@{}l@{}}Fills the DDRAM with zeroes to clear\\ the display.\end{tabular} \\
+		resetDisplay() & \begin{tabular}[c]{@{}l@{}}Resets the display by setting the reset pin \\ low and then high after a short delay.\end{tabular} \\
+		\rowcolor[HTML]{EFEFEF} 
+		setCursor(char x, char y) & \begin{tabular}[c]{@{}l@{}}Sets the cursor of the DDRAM to position\\ x, y.\end{tabular} \\
+		sendInstruction(unsigned char) & \begin{tabular}[c]{@{}l@{}}Sets the DC pin LOW (indicating command)\\ and sends data to the display using the SPIDriver.\end{tabular} \\
+		sendData(unsigned char) & \begin{tabular}[c]{@{}l@{}}Sets the DC pin HIGH (indicating data)\\ and sends data to the display using the SPIDriver.\end{tabular}
+	\end{tabular}
+	\caption{Description of the methods in the Nokia511Driver}
+	\label{Nokia5110DriverDescription}
+\end{table}
 
--- Display screen mapping
+When sending data to draw on the display, it is stored in the DDRAM (Display Data RAM), which is mapped to the pixels on the screen. The DDRAM is divided into 6 banks of 84 bytes. Each bit correlates to a pixel in the display, and a logical 1 turns the pixel black, while a logical 0 turns the pixel white.
 
--- FontMaker 
+Data can be placed into the DDRAM in specific spots by using x-y addressing in accordance with figure \ref{DDRAMAdressing} but is otherwise inserted using the Address Counter which is incremented in accordance with the V flag (either horizontally figure \ref{HorizontalIncrement} or vertically figure \ref{VerticalIncrement}).
 
--- Display Driver
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{DDRAMAdressing}
+	\centering
+	\caption{DDRAM Addressing - Source Nokia Datasheet\cite{NokiaDisplay} page 9}
+	\label{DDRAMAdressing}
+\end{figure}
 
-RST - CE - DC - DIN - CLK- VCC -LIGHT - GND
+\begin{figure}[H]
+	\includegraphics[]{VerticalIncrement}
+	\centering
+	\caption{Vertical Addressing - Source Nokia Datasheet\cite{NokiaDisplay} page 9}
+	\label{VerticalIncrement}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[]{HorizontalIncrement}
+	\centering
+	\caption{Horizontal Addressing - Source Nokia Datasheet\cite{NokiaDisplay} page 10}
+	\label{HorizontalIncrement}
+\end{figure}
+
+In our project, we have made use of vertical addressing when filling the DDRAM.
