@@ -5,9 +5,6 @@ The membrane keypad used for the project is the \textit{Matrix Keyboard 4x4 on P
 
 For a detailed description of its interface, see table \ref{table:MembraneKeypad} of section \ref{section:InternalBlockDiagram} - \nameref{section:InternalBlockDiagram}.
 
-\subsection{Scanning}
-The advantage of a matrix keypad is that it is relatively straightforward to determine the character that is currently pressed down on it. The keypad makes no use of communication protocols such as SPI or I2C, thus the system is not complicated further by this. Instead, the keypad consists of input and output signals that can be read and written to through the Atmega2560 registers.
-
 \subsection{Keypad Driver}
 In order to make use of the membrane keypad in the software of our project, we developed a keypad driver. The interface of this driver can be seen in the class diagram of figure \ref{KeypadDriverClassDiagram}.
 
@@ -46,3 +43,18 @@ A description of the attributes of the KeypadDriver can be seen in table \ref{ta
 	\caption{Descriptions of the attributes of the Keypad Driver.}
 	\label{table:KeypadDriverAttributeDescriptions}
 \end{table}
+
+\subsection{Scanning}
+The advantage of a matrix keypad is that it is relatively straightforward to determine the character that is currently pressed down on it. The keypad makes no use of communication protocols such as SPI or I2C, thus the system is not complicated further by this. Instead, the keypad consists of input and output signals that can be read and written to through the Atmega2560 registers.
+
+The algorithm we use to determine the currently held down key is called \textit{scanning} \cite{KeypadScanningAlgorithm}. Essentially, we sequentially output a low signal to the pins for each of the keypad columns, and then read the state of the pins for each individual row. 
+
+The sequence of our scanning algorithm implementation can be seen in the sequence diagram of figure \ref{ScanningAlgorithmSequence}. The \textit{main} software component can be read in detail in section \textbf{FUNDOC GAME LOGIC}.
+
+\begin{figure}[H]
+	\includegraphics[scale=0.9]{ScanningSequenceDiagram}
+	\centering
+	\caption{The sequence of the scanning algorithm as implemented in our Keypad Driver.}
+	\label{ScanningAlgorithmSequence}
+\end{figure}
+
