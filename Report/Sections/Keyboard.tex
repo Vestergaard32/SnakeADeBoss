@@ -11,7 +11,7 @@ In order to make use of the membrane keypad in the software of our project, we d
 \begin{figure}[H]
 	\includegraphics[scale=1.0]{KeypadDriverClassDiagram}
 	\centering
-	\caption{The class diagram for the keypad driver.}
+	\caption{Class diagram for keypad driver}
 	\label{KeypadDriverClassDiagram}
 \end{figure}
 
@@ -27,7 +27,7 @@ A description of the attributes of the KeypadDriver can be seen in table \ref{ta
 		InitKeypad & \begin{tabular}[c]{@{}l@{}}This method initializes specific pins of the Atmega 2560\\ to be input and output, according to the required\\ configuration of the membrane keypad andAtmega2560\\ described in the internal block diagrams of section ...\end{tabular} \\ \hline
 		GetKey & \begin{tabular}[c]{@{}l@{}}This method can be called by external clients in order\\ to retrieve the currently held down key of the\\ membrane keypad. What is returned is an ASCII\\ character representation of the character pressed on\\ the keypad.\end{tabular} \\ \hline
 	\end{tabular}
-	\caption{Descriptions of the methods of the Keypad Driver.}
+	\caption{Descriptions of the methods of the Keypad Driver}
 	\label{table:KeypadDriverMethodDescriptions}
 \end{table}
 
@@ -40,7 +40,7 @@ A description of the attributes of the KeypadDriver can be seen in table \ref{ta
 		keyPressed & \begin{tabular}[c]{@{}l@{}}This attribute represents the currently held\\ down key from the keypad. The value of it\\ is what is returned to external clients.\end{tabular} \\ \hline
 		characterColumns & \begin{tabular}[c]{@{}l@{}}This is a 2D array, in which each individual array\\ represents a single column of the physical\\ keypad. This array is used by mapping logic to\\ retrieve the correct ASCII character based\\ on the current scan location.\end{tabular} \\ \hline
 	\end{tabular}
-	\caption{Descriptions of the attributes of the Keypad Driver.}
+	\caption{Descriptions of the attributes of the Keypad Driver}
 	\label{table:KeypadDriverAttributeDescriptions}
 \end{table}
 

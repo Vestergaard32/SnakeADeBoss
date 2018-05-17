@@ -4,12 +4,12 @@ On the display component sits a PCD8544 low power CMOS LCD controller, which con
 
 %As we used the SPI-protocol to communicate, we coupled the data-in (DIN) pin to the MOSI pin on the ATMEGA. The clock (CLK) pin of the display was connected to the CLK on the ATMEGA. 
 
-To communicate easily with the display, we made a spi-driver that could initialize spi communication and send bytes from the ATMEGA to SPI-bus connected to the display. The classdiagram can be seen in figure \ref{SpiDriverClassDiagram}.
+To communicate easily with the display, we made a SPI-driver that could initialize SPI communication and send bytes from the ATMEGA to SPI-bus connected to the display. The classdiagram can be seen in figure \ref{SpiDriverClassDiagram}.
 
 \begin{figure}[H]
 	\includegraphics[width=5cm]{SPIDriverClassDiagram}
 	\centering
-	\caption{Class Diagram of the Spi Driver}
+	\caption{Class Diagram of the SPI Driver}
 	\label{SpiDriverClassDiagram}
 \end{figure}
 
@@ -39,7 +39,7 @@ The method descriptions can be found in table \ref{Nokia5110DriverDescription}.
 		\rowcolor[HTML]{EFEFEF}
 		sendData(unsigned char) & \begin{tabular}[c]{@{}l@{}}Sets the DC pin HIGH (indicating data)\\ and sends data to the display using the SPIDriver.\end{tabular}
 	\end{tabular}
-	\caption{Description of the methods in the Nokia511Driver}
+	\caption{Description of the methods in the Nokia5110 Driver}
 	\label{Nokia5110DriverDescription}
 \end{table}
 

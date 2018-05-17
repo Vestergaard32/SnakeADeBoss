@@ -1,5 +1,5 @@
 \subsection{FlashDriver}
-	To be ensure that in-game high scores are stored despite resets and power outages the values are stored in the AtMega2560's flash memory. To be able to write to the microcontrollers flash memory the following configurations have been made:
+	To ensure that in-game high scores are stored despite resets and power outages the values are stored in the AtMega2560's flash memory. To be able to write to the microcontrollers flash memory the following configurations have been made:
 	
 	\textbf{Page number} \newline
 		To store the high score data, we write the top three values in page number 253. The page number is chosen to be a value large enough to ensure that the application code will not overwrite the high score value, while still remaining within the RWW Section of flash memory. This places the first byte of data at address 0xFD00.
