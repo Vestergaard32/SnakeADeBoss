@@ -26,9 +26,9 @@
 			\centering
 			\begin{tabular}{|l|l|}
 				\hline
-				Block & Description \\ \hline
+				\textbf{Block} & \textbf{Description} \\ \hline
 				AtMega2560 & \begin{tabular}[c]{@{}l@{}}An AVR microcontroller. This component contains all game\\ logic and interfaces to Membrane Keyboard and Nokia 5110\\ Display.\end{tabular} \\ \hline
-				Membrane Keyboard & \begin{tabular}[c]{@{}l@{}}A 4x4 membrane keypad. The user interacts with the system \\ via this component. The result of interactions with this com-\\ ponent is displayed on Nokia 5110 Display.\end{tabular} \\ \hline
+				Matrix Keyboard & \begin{tabular}[c]{@{}l@{}}A 4x4 membrane keypad. The user interacts with the system \\ via this component. The result of interactions with this com-\\ ponent is displayed on Nokia 5110 Display.\end{tabular} \\ \hline
 				Nokia 5110 Display & \begin{tabular}[c]{@{}l@{}}A Nokia display. The user sees the game and scores on this\\ component.\end{tabular} \\ \hline
 			\end{tabular}
 			\caption{Block descriptions for SnakeADeBoss}
@@ -59,21 +59,21 @@
 				& displaySupply & IN & \begin{tabular}[c]{@{}l@{}}Type: Voltage\\ Range: 0-3.3V\\ Description: Power supply \\ for display.\end{tabular} \\ \cline{2-4} 
 				& lightSupply &  & \begin{tabular}[c]{@{}l@{}}Type: Voltage\\ Range: 0-3.3V\\ Description: Power supply\\ for light on display.\end{tabular} \\ \hline
 			\end{tabular}
-			\caption{My caption}
-			\label{my-label}
+			\caption{Signal description for Nokia 5110 Display}
+			\label{tb:sigDisplay}
 		\end{table}
 				
 		\begin{table}[H]
 			\centering
 			\begin{tabular}{|l|l|l|l|}
 				\hline
-				\multicolumn{4}{|c|}{\textbf{Membrane Keypad}} \\ \hline
+				\multicolumn{4}{|c|}{\textbf{Matrix Keypad}} \\ \hline
 				Description & Signal & Direction & Signal Description \\ \hline
 				\multirow{3}{*}{\begin{tabular}[c]{@{}l@{}}User interacts with this\\ component to interact\\ with system.\end{tabular}} & touch & IN & \begin{tabular}[c]{@{}l@{}}Type: Touch\\ Description: Physical user-\\ input\end{tabular} \\ \cline{2-4} 
 				& row1-4 & OUT & \begin{tabular}[c]{@{}l@{}}Type: Voltage\\ Range: 0-3.3V\\ Description: Signal for row on\\ Keypad.\end{tabular} \\ \cline{2-4} 
 				& column1-4 & IN & \begin{tabular}[c]{@{}l@{}}Type: Voltage\\ Range: 0-3.3V\\ Description:  Signal for row on\\ Keypad.\end{tabular} \\ \hline
 			\end{tabular}
-			\caption{A description of the input and output signals of the membrane keypad.}
+			\caption{Signal description for Matrix keypad}
 			\label{table:MembraneKeypad}
 		\end{table}
 		
@@ -88,9 +88,9 @@
 				& dataControl & OUT & \begin{tabular}[c]{@{}l@{}}Type: Voltage\\ Range: 0-3.3V\\ Description: Signal indicating\\ data received in SPI bus is\\ command or data.\end{tabular} \\ \cline{2-4} 
 				& displaySupply & OUT & \begin{tabular}[c]{@{}l@{}}Type: Voltage\\ Range: 0-3.3V\\ Description: Power supply \\ for display.\end{tabular} \\ \cline{2-4} 
 				& lightSupply & OUT & \begin{tabular}[c]{@{}l@{}}Type: Voltage\\ Range: 0-3.3V\\ Description: Power supply\\ for light on display.\end{tabular} \\ \cline{2-4} 
-				& row1-4 & IN & \begin{tabular}[c]{@{}l@{}}Type: Voltage\\ Range: 0-3.3V\\ \\ Description: Signal for row \\ on keypad.\end{tabular} \\ \cline{2-4} 
+				& row1-4 & IN & \begin{tabular}[c]{@{}l@{}}Type: Voltage\\ Range: 0-3.3V\\ Description: Signal for row \\ on keypad.\end{tabular} \\ \cline{2-4} 
 				& column1-4 & OUT & \begin{tabular}[c]{@{}l@{}}Type: Voltage\\ Range: 0-3.3V\\ Description: Signal for \\ column on keypad.\end{tabular} \\ \hline
 			\end{tabular}
-			\caption{My caption}
-			\label{my-label}
+			\caption{Signal description for AtMega2560 Keypad}
+			\label{}
 		\end{table}
