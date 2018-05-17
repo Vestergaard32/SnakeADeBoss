@@ -8,6 +8,8 @@ For a detailed description of its interface, see table \ref{table:MembraneKeypad
 \subsection{Scanning}
 The advantage of a matrix keypad is that it is relatively straightforward to determine the character that is currently pressed down on it. The keypad makes no use of communication protocols such as SPI or I2C, thus the system is not complicated further by this. Instead, the keypad consists of input and output signals that can be read and written to through the Atmega2560 registers.
 
+The algorithm we use to determine the currently held down key is called \textit{scanning} \cite{KeypadScanningAlgorithm}. 
+
 \subsection{Keypad Driver}
 In order to make use of the membrane keypad in the software of our project, we developed a keypad driver. The interface of this driver can be seen in the class diagram of figure \ref{KeypadDriverClassDiagram}.
 
