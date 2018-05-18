@@ -88,6 +88,7 @@ int main(void)
 					scoreOnesCounter = 0;
 				} else if (scoreHundredsCounter != 9)
 				{
+					scoreOnesCounter = 0;
 					scoreTensCounter = 0;
 					scoreHundredsCounter += 1;
 				}
