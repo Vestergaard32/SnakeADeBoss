@@ -1,10 +1,10 @@
 \section{The Display}
 \label{DisplaySection}
-On the display component sits a PCD8544 low power CMOS LCD controller, which controls the rows and columns of the graphic 48x84 display. Communication with this controller is done through a serial bus interface like the SPI-protocol \cite{NokiaDisplay}.
+On the display component sits a PCD8544 low power CMOS LCD controller, which controls the rows and columns of the graphic 48x84 display. Communication with this controller is done through the SPI-protocol \cite{NokiaDisplay}.
 
 %As we used the SPI-protocol to communicate, we coupled the data-in (DIN) pin to the MOSI pin on the ATMEGA. The clock (CLK) pin of the display was connected to the CLK on the ATMEGA. 
 
-To communicate easily with the display, we made a SPI-driver that could initialize SPI communication and send instructions and data from the ATMEGA to a SPI-bus connected to the display. The class diagram can be seen in figure \ref{SpiDriverClassDiagram}.
+To communicate easily with the display, we made a SPI-driver that could initialize SPI communication and send instructions and data from the ATMEGA to a SPI-bus connected to the display. The class diagram of this SPI driver can be seen in figure \ref{SpiDriverClassDiagram}.
 
 \begin{figure}[H]
 	\includegraphics[width=5cm]{SPIDriverClassDiagram}
@@ -27,7 +27,7 @@ Table \ref{table:SpiDriverMethodDescriptions} describes the methods of the SPIDr
 	\label{table:SpiDriverMethodDescriptions}
 \end{table}
 
-Since the display controller requires more logic than simply sending bytes of data via SPI, we created a Nokia5110 driver. This class made use of the SPI driver to send instructions and control the Data/Command pin of the display. This class diagram for the Nokia5110 driver can be seen on figure 
+Since the display controller requires more logic than simply sending bytes of data via SPI, we created a Nokia5110 driver. This component makes use of the SPI driver to send instructions and data to the display. The class diagram for the Nokia5110 driver can be seen on figure \ref{Nokia5110DriverClassDiagram}.
 
 \begin{figure}[H]
 	\includegraphics[width=5cm]{Nokia5110DriverClassDiagram}
@@ -36,7 +36,7 @@ Since the display controller requires more logic than simply sending bytes of da
 	\label{Nokia5110DriverClassDiagram}
 \end{figure}
 
-The method descriptions can be found in table \ref{Nokia5110DriverDescription}.
+The method descriptions of the Nokia5110 driver can be found in table \ref{Nokia5110DriverDescription}.
 
 \begin{table}[H]
 	\centering
