@@ -44,8 +44,18 @@
 	\textbf{Food Collision Detection} \newline
 	
 	\textbf{World Rendering} \newline
-
-
+		The main class of the game keeps track of the world through a char array of 504 bytes - a direct mapping to the DDRAM of the display. 
+		This array contains the visual information to show the snake and food objects.
+		In each gameloop, the array is updated with new positions for the snake and food, using the \textit{DrawDot()} and \textit{DrawFood()} methods of the worldDriver.
+		At the end of the gameloop, the array is sent to the display using the \textit{RenderWorld()} method of the worldDriver.
+		This has been depicted with pseudo-code in the sequence diagram on figure \ref{SnakeRenderLoop}.
+		
+		\begin{figure}[H]
+			\includegraphics{SnakeRenderLoop}
+			\centering
+			\caption{Sequence of world rendering using pseudo-code.}
+			\label{SnakeRenderLoop}
+		\end{figure}
 	
 	\textbf{High Score Presentation} \newline
 		When the snake collides with itself, the game is finished and the screen displays the high score header, defined in Bitmaps, and the current top 3 high scores. The following diagram shows the sequence for visualizing and updating the display.
