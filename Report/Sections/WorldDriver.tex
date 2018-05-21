@@ -8,6 +8,6 @@ To help us draw on the display, we made a class that, using the Nokia5110Driver,
 	\label{WorldDriverClassDiagram}
 \end{figure}
 
-The \textit{DrawIntroScreen, DrawHighscoreText}, and \textit{RenderWorld} methods all take an unsigned char array and sends it to the display for rendition.
+The \textit{DrawIntroScreen, DrawHighscoreText}, and \textit{RenderWorld} methods all take an unsigned char array and sends it to the display for rendition. The \textit{world} parameter of the \textit{RenderWorld} method is the world array which contains a visual rendition of a single game frame.
 
 The methods \textit{DrawDot}, \textit{DrawFood} and \textit{DrawPixel} does not send any data to the display themselves, but they populate the world array with 1's and 0's in the structure of the banks of the DDRAM (See section \ref{DisplaySection}). The dots, food and pixels are only rendered when the \textit{RenderWorld} method is called by the game loop.

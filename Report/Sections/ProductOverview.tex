@@ -1,7 +1,9 @@
 \section{Project Overview}
-	In this product we want to recreate the old SNAKE game from the Nokia 3310 phone. The game will be created using an Nokia 5110 48 x 84 LCD matric display \cite{NokiaDisplay}; the same model that was used in the original Nokia 3310. The user will use a matrix keyboard to control the snake in the same way as in the original game. The system is driven by an ATMEGA 2560 that will read the user input, do the game calculations, and draw the game onto the display. In our version of snake, we are also keeping a highscore list. This highscore is saved in the non-volatile flash memory of the ATMEGA 2560 to ensure that it is persisted even if the power for the ATMEGA is off.
+	In this project we want to recreate the old SNAKE game from the Nokia 3310 phone. The game will be created using an Nokia 5110 48 x 84 LCD matric display \cite{NokiaDisplay}; The user will use a matrix keyboard to control the snake in the same way as in the original game. The system is driven by an ATMEGA 2560 that will read the user input, do the game logic, and render the game onto the display. In our version of snake, we are also keeping a highscore list. This highscore is saved in the non-volatile flash memory of the ATMEGA 2560 to ensure that it is persisted even if the power for the ATMEGA is off.
 	
 	The game has been written entirely in the C language using Atmel Studio.
+	
+	For a video demonstration of the final product, see the attached video \textit{SnakeADeBossDemonstration.mp4}.
 
 \section{System Description}
 	In figure \ref{ProductComponents} the final result of the project can be seen. The red square shows the Arduino board containing the ATMEGA 2560 microcontroller. This is connected to the matrix keyboard highlighted in the blue square, and the Nokia display indicated with green. 
@@ -15,7 +17,7 @@
 
 
 	\subsection{Block Definition Diagram}
-		Figure \ref{fig:bdd} gives an overview of the system from a hardware perspective. The block diagram shows the relations between the system's components and gives a general idea on how these components interact. The figure also includes a flow specification for SPI, since this connection is a non-atomic connection consisting of multiple signals. Table \ref{tb:blockDescriptions} following the diagram describes the blocks and their purpose.
+		Figure \ref{fig:bdd} gives an overview of the system from a hardware perspective. The block diagram shows the relations between the system's hardware components and gives a general idea on how these components interact. The figure also includes a flow specification for SPI, since this connection is a non-atomic connection consisting of multiple signals. Table \ref{tb:blockDescriptions} following the diagram describes the blocks and their purpose.
 		
 		\begin{figure}[H]
 			\includegraphics[width=14cm]{SnakeADeBossBDD}
@@ -29,9 +31,9 @@
 			\begin{tabular}{|l|l|}
 				\hline
 				\textbf{Block} & \textbf{Description} \\ \hline
-				AtMega2560 & \begin{tabular}[c]{@{}l@{}}An AVR microcontroller. This component contains all game\\ logic and interfaces to Membrane Keyboard and Nokia 5110\\ Display.\end{tabular} \\ \hline
+				AtMega2560 & \begin{tabular}[c]{@{}l@{}}An AVR microcontroller. This component contains all game\\ logic and interfaces to Matrix Keyboard and Nokia 5110\\ Display.\end{tabular} \\ \hline
 				Matrix Keyboard & \begin{tabular}[c]{@{}l@{}}A 4x4 membrane keypad. The user interacts with the system \\ via this component. The result of interactions with this com-\\ ponent is displayed on Nokia 5110 Display.\end{tabular} \\ \hline
-				Nokia 5110 Display & \begin{tabular}[c]{@{}l@{}}A Nokia display. The user sees the game and scores on this\\ component.\end{tabular} \\ \hline
+				Nokia 5110 Display & \begin{tabular}[c]{@{}l@{}}A Nokia display. The user sees the game on this\\ component.\end{tabular} \\ \hline
 			\end{tabular}
 			\caption{Block descriptions for SnakeADeBoss}
 			\label{tb:blockDescriptions}
@@ -41,7 +43,7 @@
 	\subsection{Internal Block Diagram}
 	\label{section:InternalBlockDiagram}
 	
-		Figure \ref{fig:ibd} shows the interal block diagram for SnakeADeBoss. This diagram describes the signals sent between the system's blocks. The tables following figure \ref{fig:ibd} describes the signals of the diagram.
+		Figure \ref{fig:ibd} shows the internal block diagram for SnakeADeBoss. This diagram describes the signals sent between the system's blocks. The tables following figure \ref{fig:ibd} describes the signals of the diagram.
 		\begin{figure}[H]
 			\includegraphics[width=14cm]{SnakeADeBossIBD}
 			\centering

@@ -2,9 +2,9 @@
 \label{DisplaySection}
 On the display component sits a PCD8544 low power CMOS LCD controller, which controls the rows and columns of the graphic 48x84 display. Communication with this controller is done through the SPI-protocol \cite{NokiaDisplay}.
 
-%As we used the SPI-protocol to communicate, we coupled the data-in (DIN) pin to the MOSI pin on the ATMEGA. The clock (CLK) pin of the display was connected to the CLK on the ATMEGA. 
+The display was chosen because we wanted one which closely resembled the display used by the original snake game. 
 
-To communicate easily with the display, we made a SPI-driver that could initialize SPI communication and send instructions and data from the ATMEGA to a SPI-bus connected to the display. The class diagram of this SPI driver can be seen in figure \ref{SpiDriverClassDiagram}.
+To communicate with the display, we made a SPI-driver that could initialize SPI communication and send instructions and data from the ATMEGA to a SPI-bus connected to the display. The class diagram of this SPI driver can be seen in figure \ref{SpiDriverClassDiagram}.
 
 \begin{figure}[H]
 	\includegraphics[width=5cm]{SPIDriverClassDiagram}
@@ -59,7 +59,7 @@ The method descriptions of the Nokia5110 driver can be found in table \ref{Nokia
 
 When sending data to draw on the display, it is stored in the DDRAM (Display Data RAM), which is mapped to the pixels on the screen. The DDRAM is divided into 6 banks of 84 bytes. Each bit correlates to a pixel in the display, and a logical 1 turns the pixel black, while a logical 0 turns the pixel white.
 
-Data can be placed into the DDRAM in specific spots by using x-y addressing in accordance with figure \ref{DDRAMAdressing} but is otherwise inserted using the Address Counter which is incremented in accordance with the V flag (either horizontally figure \ref{HorizontalIncrement} or vertically figure \ref{VerticalIncrement}).
+Data can be placed into the DDRAM in specific spots by using x-y addressing in accordance with figure \ref{DDRAMAdressing} but is otherwise inserted using the Address Counter which is automatically incremented in accordance with the V flag (either horizontally figure \ref{HorizontalIncrement} or vertically figure \ref{VerticalIncrement}).
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth]{DDRAMAdressing}

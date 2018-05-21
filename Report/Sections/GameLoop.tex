@@ -1,5 +1,5 @@
 \subsection{Main Game Loop}
-	 The Main Game Loop is the contains the main function in which all game logic is performed. The game logic is performed using the classes described above. The following class diagram, figure \ref{fig:classMain}, shows the dependencies for the Main Game Loop. 
+	 The Main Game Loop contains the main function in which all game logic is performed. The game logic is performed using the classes described above. The following class diagram, figure \ref{fig:classMain}, shows the dependencies for the Main Game Loop. 
 
 	\begin{figure}[H]
 		\includegraphics[width=14cm]{MainClassDiagram}
@@ -7,6 +7,10 @@
 		\caption{Class diagram for MainGameLoop}
 		\label{fig:classMain}
 	\end{figure}
+	
+	Table \ref{fig:methodsMGL} describes the methods of the main software component.
+	
+	Table \ref{table:MainAttributes} describes the attributes of the main software component.
 	
 	\begin{table}[H]
 		\centering
@@ -34,7 +38,7 @@
 			\begin{tabular}[c]{@{}l@{}}scoreOnesCounter/\\ scoreTensCounter/\\ scoreHundredsCounter\end{tabular} & \begin{tabular}[c]{@{}l@{}}Indicates the score which combined make up a three\\ digit score. The hundreds counter is not displayed and\\ is used to roll over the score if it exceeds 99.\end{tabular} \\ \hline
 		\end{tabular}
 		\caption{Description of the attributes of MainGameLoop}
-		\label{my-label}
+		\label{table:MainAttributes}
 	\end{table}
 	
 	\textbf{Reset Logic} \newline
@@ -42,12 +46,13 @@
 		state. This includes resetting in-game values such as the state, score, length and speed. The display's cursor is reset and cleared, to ensure that the next rendering will start at the upper left hand corner, in case the game stops in the middle of a rendering. The display is cleared Additionally, this is where a new snake is created and a new food position is generated. This position will be used when the game restarts.
 	
 	\textbf{Food Collision Detection} \newline
+		Food collision detection is handled using Axis-Aligned Bounding Box Collision Detection \cite{CollisionDetection}, exactly the same approach used for collision detection of the snake. See section \ref{section:CollisionDetection} for a description of the algorithm and why we chose to use it.
 	
 	\textbf{World Rendering} \newline
 		The main class of the game keeps track of the world through a char array of 504 bytes - a direct mapping to the DDRAM of the display. 
 		This array contains the visual information to show the snake and food objects.
-		In each gameloop, the array is updated with new positions for the snake and food, using the \textit{DrawDot()} and \textit{DrawFood()} methods of the worldDriver.
-		At the end of the gameloop, the array is sent to the display using the \textit{RenderWorld()} method of the worldDriver.
+		In each game loop, the array is updated with new positions for the snake and food, using the \textit{DrawDot()} and \textit{DrawFood()} methods of the worldDriver.
+		At the end of the game loop, the array is sent to the display using the \textit{RenderWorld()} method of the worldDriver.
 		This has been depicted with pseudo-code in the sequence diagram on figure \ref{SnakeRenderLoop}.
 		
 		\begin{figure}[H]
@@ -58,10 +63,10 @@
 		\end{figure}
 	
 	\textbf{High Score Presentation} \newline
-		When the snake collides with itself, the game is finished and the screen displays the high score header, defined in Bitmaps, and the current top 3 high scores. The following diagram shows the sequence for visualizing and updating the display.
+		When the snake collides with itself, the game is finished and the screen displays the highscore text, defined in Bitmaps, and the current top 3 highscores. The following diagram shows the sequence for visualizing and updating the display using pseudo-code.
 		
 			\begin{figure}[H]
-				\includegraphics[width=14cm]{sequenceHighScore}
+				\includegraphics[]{sequenceHighScore}
 				\centering
 				\caption{Class diagram for MainGameLoop}
 				\label{fig:classMain}
