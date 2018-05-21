@@ -4,7 +4,7 @@ On the display component sits a PCD8544 low power CMOS LCD controller, which con
 
 %As we used the SPI-protocol to communicate, we coupled the data-in (DIN) pin to the MOSI pin on the ATMEGA. The clock (CLK) pin of the display was connected to the CLK on the ATMEGA. 
 
-To communicate easily with the display, we made a SPI-driver that could initialize SPI communication and send bytes from the ATMEGA to SPI-bus connected to the display. The classdiagram can be seen in figure \ref{SpiDriverClassDiagram}.
+To communicate easily with the display, we made a SPI-driver that could initialize SPI communication and send instructions and data from the ATMEGA to a SPI-bus connected to the display. The class diagram can be seen in figure \ref{SpiDriverClassDiagram}.
 
 \begin{figure}[H]
 	\includegraphics[width=5cm]{SPIDriverClassDiagram}
@@ -12,6 +12,20 @@ To communicate easily with the display, we made a SPI-driver that could initiali
 	\caption{Class Diagram of the SPI Driver}
 	\label{SpiDriverClassDiagram}
 \end{figure}
+
+Table \ref{table:SpiDriverMethodDescriptions} describes the methods of the SPIDriver.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Method} & \textbf{Description} \\ \hline
+		SPI\_MasterInit & \begin{tabular}[c]{@{}c@{}}This method initializes the SPI settings of the ATmega\\ to conform to what is required in order to communicate\\ with the display.\end{tabular} \\ \hline
+		SPI\_MasterTransmit & \begin{tabular}[c]{@{}c@{}}This method sends data to the SPI bus, which is\\ used in order to send instructions and data to the\\ display.\end{tabular} \\ \hline
+	\end{tabular}
+	\caption{Method descriptions for the SPIDriver}
+	\label{table:SpiDriverMethodDescriptions}
+\end{table}
 
 Since the display controller requires more logic than simply sending bytes of data via SPI, we created a Nokia5110 driver. This class made use of the SPI driver to send instructions and control the Data/Command pin of the display. This class diagram for the Nokia5110 driver can be seen on figure 
 
