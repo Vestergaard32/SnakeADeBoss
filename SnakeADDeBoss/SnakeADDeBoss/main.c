@@ -15,19 +15,26 @@
 
 void ResetGame();
 
+// The world width and height in pixels
 #define WORLD_WIDTH 83
 #define WORLD_HEIGHT 47
 
+// The game states for the game (either the snake is alive or dead)
 #define GAME_STATE_ALIVE 1
 #define GAME_STATE_DEAD 0
 
+// The movement speed for the snake at the beginning of a new round
 #define GAME_INITIAL_SPEED 60
 
+// The length of the snake (in snake body parts) at the beginning of the round
 #define GAME_INITIAL_SNAKE_LENGTH 4
 
 unsigned char worldImage[504];
 
+// The array used to contain the snake during the entire game
 struct SnakeBodyPart snake[100];
+
+// The position of the currently displayed food of the game
 struct Position currentFoodPosition;
 int snakeBodyLength = GAME_INITIAL_SNAKE_LENGTH;
 int gameState = GAME_STATE_ALIVE;
@@ -63,22 +70,28 @@ int main(void)
 		{
 			UpdateSnake(snake, snakeBodyLength, WORLD_WIDTH, WORLD_HEIGHT);
 
+			// Detect if the snake has hit a piece of food in the world
 			struct SnakeBodyPart snakeHead = snake[0];
 			if (snakeHead.x < (currentFoodPosition.x + 3) &&
 			(snakeHead.x + 2) > currentFoodPosition.x &&
 			snakeHead.y < (currentFoodPosition.y + 2) &&
 			(2 + snakeHead.y) > (currentFoodPosition.y -1))
 			{
+				// Generate a new position for a new piece of food
 				currentFoodPosition = GenerateFoodPosition(WORLD_WIDTH, WORLD_HEIGHT);
 				snakeBodyLength++;
 				
+				// Increase the movement speed of the snake to make the game harder
+				// This is done by decreasing the update interval between each frame
 				if(gameSpeed !=  0)
 					gameSpeed--;
-					
+				
+				// Grow the snake by two body parts
 				GrowSnake(snake, snakeBodyLength);
 				snakeBodyLength++;
 				GrowSnake(snake, snakeBodyLength);
 				
+				// Increase the user score
 				if (scoreOnesCounter != 9)
 				{
 					scoreOnesCounter += 1;
@@ -94,18 +107,24 @@ int main(void)
 				}
 			}
 
+			// Draw the newly generated food, which is the next food that the
+			// User has to get
 			DrawFood(currentFoodPosition.x ,currentFoodPosition.y, worldImage);
 
+			// Draw the entire snake
 			for(int i = 0; i < snakeBodyLength; i++)
 			{
 				DrawDot(snake[i].x, snake[i].y, worldImage);
 			}
 					
+			// Check if the snake has collided with itself
+			// And if this is the case, set the game state to be lost
 			if (SnakeHitSelf() == 1)
 			{
 				gameState = GAME_STATE_DEAD;
 			}
-					
+
+			// Render the entire frame of the world in its current state
 			RenderWorld(worldImage);
 		} else if (gameState == GAME_STATE_DEAD)
 		{

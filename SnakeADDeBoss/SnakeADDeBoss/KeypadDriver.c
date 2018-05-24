@@ -38,6 +38,7 @@ char GetKey()
 {
 	keyPressed = 0;
 	
+	// Scan through all the columns of the keypad
 	for (int columnIndex = 0; columnIndex < 4; columnIndex++)
 	{
 		// Scan Column 1 (1, 4, 7, and *)
