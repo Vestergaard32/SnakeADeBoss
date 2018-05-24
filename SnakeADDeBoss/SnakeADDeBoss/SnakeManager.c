@@ -2,10 +2,24 @@
 #include "KeypadDriver.h"
 #include <string.h>
 
+// The horizontal direction of the snake
+// 1 = moving right
+// -1 = moving left
+// 0 = no horizontal movement
 int xDirection = 1;
+
+// The vertical direction of the snake
+// 1 = down
+// -1 = up
+// 0 = no vertical movement
 int yDirection = 0;
+
+// value indicating if snake hit itself
+// 0 = false
+// 1 = true
 int hitSelf = 0;
 
+// Make snake go left
 void GoLeft()
 {
 	if (xDirection == 1)
@@ -15,6 +29,7 @@ void GoLeft()
 	xDirection = -1;
 }
 
+// make snake go right
 void GoRight()
 {
 	if (xDirection == -1)
@@ -24,6 +39,7 @@ void GoRight()
 	xDirection = 1;
 }
 
+// Make snake go up
 void GoUp()
 {
 	if (yDirection == 1)
@@ -33,6 +49,7 @@ void GoUp()
 	xDirection = 0;
 }
 
+// Make snake go down
 void GoDown()
 {
 	if (yDirection == -1)
@@ -42,6 +59,8 @@ void GoDown()
 	yDirection = 1;
 }
 
+// Read input from keypad so that the user
+// Can change snake direction
 void CheckInput()
 {
 	if (GetKey() == '8')
@@ -65,6 +84,7 @@ void CheckInput()
 	}
 }
 
+// Use AABB collision to check if snake head part is colliding with any other body part
 void CheckSnakeBodyCollision(struct SnakeBodyPart snakeArray[], int snakeLength)
 {
 	struct SnakeBodyPart snakeHead = snakeArray[0];
@@ -73,6 +93,7 @@ void CheckSnakeBodyCollision(struct SnakeBodyPart snakeArray[], int snakeLength)
 	{
 		struct SnakeBodyPart currentBodyPart = snakeArray[bodyPartIndex];
 		
+		// Check if head is overlapping with any snake body part
 		if (snakeHead.x < (currentBodyPart.x + 2) &&
 		(snakeHead.x + 2) > currentBodyPart.x &&
 		snakeHead.y < (currentBodyPart.y + 2) &&
@@ -124,7 +145,10 @@ void UpdateSnake(struct SnakeBodyPart snakeArray[], int snakeLength, int worldWi
 		{
 			snakeArray[bodyPartIndex].prevX = snakeArray[bodyPartIndex].x;
 			snakeArray[bodyPartIndex].prevY = snakeArray[bodyPartIndex].y;
-					
+			
+			// World boundary checks
+			// If the snake exceeds any of the world's dimensions
+			// It will reappear on the opposite side
 			if ((snakeArray[bodyPartIndex].x + 1) > worldWidth)
 			{
 				snakeArray[bodyPartIndex].x = 0;
