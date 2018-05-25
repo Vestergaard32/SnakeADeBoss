@@ -46,7 +46,7 @@
 		state. This includes resetting in-game values such as the state, score, length and speed. The display's cursor is reset and cleared, to ensure that the next rendering will start at the upper left hand corner, in case the game stops in the middle of a rendering. The display is cleared Additionally, this is where a new snake is created and a new food position is generated. This position will be used when the game restarts.
 	
 	\textbf{Food Collision Detection} \newline
-		Food collision detection is handled using Axis-Aligned Bounding Box Collision Detection \cite{CollisionDetection}, exactly the same approach used for collision detection of the snake. See section \ref{section:CollisionDetection} for a description of the algorithm and why we chose to use it.
+		Food collision detection is handled using Axis-Aligned Bounding Box Collision Detection \cite{CollisionDetection}, exactly the same approach used for collision detection of the snake.
 	
 	\textbf{World Rendering} \newline
 		The main class of the game keeps track of the world through a char array of 504 bytes - a direct mapping to the DDRAM of the display. 

@@ -1,5 +1,5 @@
 \section{Project Overview}
-	In this project we want to recreate the retro SNAKE game from the Nokia 3310 phone. The game will be created using an Nokia 5110 48 x 84 LCD matric display \cite{NokiaDisplay}; The user will use a matrix keyboard to control the snake in the same way as in the original game. The system is driven by an ATMEGA 2560 that will read the user input, do the game logic, and render the game onto the display. In our version of snake, we are also keeping a highscore list. This highscore is saved in the non-volatile flash memory of the ATMEGA 2560 to ensure that it is persisted even if the power for the ATMEGA is off.
+	In this project we want to recreate the retro SNAKE game from the Nokia 3310 phone. The game will be created using a Nokia 5110 48 x 84 LCD display \cite{NokiaDisplay}. The user will use a matrix keyboard to control the snake in the same way as in the original game. The system is driven by an ATMEGA 2560 that will read the user input, do the game logic, and render the game onto the display. In our version of snake, we are also keeping a highscore list. This highscore is saved in the non-volatile flash memory of the ATMEGA 2560 to ensure that it is persisted even if the power for the ATMEGA is off.
 	
 	The game has been written entirely in the C language using Atmel Studio.
 	
@@ -61,7 +61,7 @@
 				& reset & IN & \begin{tabular}[c]{@{}l@{}}Type: Voltage\\ Range: 0-3.3V\\ Description: Signal for reset\\ of the display.\end{tabular} \\ \cline{2-4} 
 				& dataControl & IN & \begin{tabular}[c]{@{}l@{}}Type: Voltage\\ Range: 0-3.3V\\ Description: Signal indicating\\ data received in SPI bus is\\ command or data.\end{tabular} \\ \cline{2-4} 
 				& displaySupply & IN & \begin{tabular}[c]{@{}l@{}}Type: Voltage\\ Range: 0-3.3V\\ Description: Power supply \\ for display.\end{tabular} \\ \cline{2-4} 
-				& lightSupply &  & \begin{tabular}[c]{@{}l@{}}Type: Voltage\\ Range: 0-3.3V\\ Description: Power supply\\ for light on display.\end{tabular} \\ \hline
+				& lightSupply & IN & \begin{tabular}[c]{@{}l@{}}Type: Voltage\\ Range: 0-3.3V\\ Description: Power supply\\ for light on display.\end{tabular} \\ \hline
 			\end{tabular}
 			\caption{Signal description for Nokia 5110 Display}
 			\label{tb:sigDisplay}

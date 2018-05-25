@@ -1,8 +1,8 @@
 \section{The Display}
 \label{DisplaySection}
-On the display component sits a PCD8544 low power CMOS LCD controller, which controls the rows and columns of the graphic 48x84 display. Communication with this controller is done through the SPI-protocol \cite{NokiaDisplay}.
-
 The display was chosen because we wanted one which closely resembled the display used by the original snake game. 
+
+On the display component sits a PCD8544 low power CMOS LCD controller, which controls the rows and columns of the graphic 48x84 display. Communication with this controller is done through the SPI-protocol \cite{NokiaDisplay}.
 
 To communicate with the display, we made a SPI-driver that could initialize SPI communication and send instructions and data from the ATMEGA to a SPI-bus connected to the display. The class diagram of this SPI driver can be seen in figure \ref{SpiDriverClassDiagram}.
 
@@ -20,7 +20,7 @@ Table \ref{table:SpiDriverMethodDescriptions} describes the methods of the SPIDr
 	\begin{tabular}{|c|c|}
 		\hline
 		\textbf{Method} & \textbf{Description} \\ \hline
-		SPI\_MasterInit & \begin{tabular}[c]{@{}c@{}}This method initializes the SPI settings of the ATmega\\ to conform to what is required in order to communicate\\ with the display.\end{tabular} \\ \hline
+		SPI\_MasterInit & \begin{tabular}[c]{@{}c@{}}This method initializes the SPI settings of the ATMEGA\\ to conform to what is required in order to communicate\\ with the display.\end{tabular} \\ \hline
 		SPI\_MasterTransmit & \begin{tabular}[c]{@{}c@{}}This method sends data to the SPI bus, which is\\ used in order to send instructions and data to the\\ display.\end{tabular} \\ \hline
 	\end{tabular}
 	\caption{Method descriptions for the SPIDriver}

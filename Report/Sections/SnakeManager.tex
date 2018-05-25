@@ -58,7 +58,7 @@ Table \ref{table:SnakeManagerMethodDescriptions} contains descriptions of highli
 		InitSnake & \begin{tabular}[c]{@{}c@{}}This method accepts an array from a client (snakeArray)\\ which should be used to construct a snake with a length\\ of SnakeBodyParts specified by the snakeLength parameter.\end{tabular} \\ \hline
 		UpdateSnake & \begin{tabular}[c]{@{}c@{}}This method will move the snake each frame of the game loop. \\ The parameters worldWidth and worldHeight is used\\ by the method to calculate world bounds.If the snake exceeds\\ these bounds, it will reappear on the opposite side of where\\ it exited.\end{tabular} \\ \hline
 		GrowSnake & \begin{tabular}[c]{@{}c@{}}This method will grow the snake to a new size. It is used\\ when the snake picks up a piece of food.\end{tabular} \\ \hline
-		SnakeHitSelf & \begin{tabular}[c]{@{}c@{}}This will is used by other components to figure out if the snake has\\ hit itself. A return value of 1 indicates collision, and a value of\\ 0 indicates no collision.\end{tabular} \\ \hline
+		SnakeHitSelf & \begin{tabular}[c]{@{}c@{}}This is used by other components to figure out if the snake has\\ hit itself. A return value of 1 indicates collision, and a value of\\ 0 indicates no collision.\end{tabular} \\ \hline
 		CheckSnakeBodyCollision & \begin{tabular}[c]{@{}c@{}}This method performs collision detection to see if the\\ snake has hit itself.\end{tabular} \\ \hline
 	\end{tabular}
 	\caption{Descriptions of highlighted methods of the SnakeManager}
@@ -75,7 +75,7 @@ The way that the snake is represented and managed through the game is by an arra
 	\label{SnakeBodyPartManagement}
 \end{figure} 
 
-The snake is a linked list \cite{LinkedLists} of SnakeBodyParts. Each SnakeBodyPart, as described in table \ref{table:SnakeBodyPartAttributeDescriptions}, has a pointer to a SnakeBodyPart that comes next in the chain. it's a recursive struct.
+The snake is a linked list \cite{LinkedLists} of SnakeBodyParts. Each SnakeBodyPart, as described in table \ref{table:SnakeBodyPartAttributeDescriptions}, has a pointer to a SnakeBodyPart that comes next in the chain. It's a recursive struct.
 
 Every time the game advances a single frame, the head of the snake moves a certain amount of world units in a direction determined by the user. Afterwards, each chained SnakeBodyPart advances themselves to the previous position of its chained SnakeBodyPart. This makes all parts of the snake move as a coherent whole. This update process is illustrated in figure \ref{SnakeBodyPartUpdateProcess}.
 
